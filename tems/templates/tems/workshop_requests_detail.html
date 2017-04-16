@@ -1,0 +1,102 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ طلبات إقامة دورة
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+      {{ workshop_request }}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <table class="table table-striped">
+                 <tbody>
+                    <tr>
+                        <td>اسم الجهة الطالبة</td>
+                        <td>{{workshop_request}}</td>
+                    </tr>
+                    <tr>
+                        <td>نوع الدورة (مباشرة | عن بعد)</td>
+                        <td>{% if workshop_request.is_workshop_direct %}
+                                مباشرة
+                            {% else %}
+                            عن بعد
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الدولة</td>
+                        <td>{{workshop_request.country|default:"لايوجد"}}</td>
+                    </tr>
+                    <tr>
+                        <td>المدينة</td>
+                        <td>{{workshop_request.city|default:"لايوجد"}}</td>
+                    </tr>
+                    <tr>
+                        <td>الحي</td>
+                        <td>{{workshop_request.neighborhood|default:"لايوجد"}}</td>
+                    </tr>
+                    <tr>
+                        <td>عدد المتدربين</td>
+                        <td>{{workshop_request.trainees_count}}</td>
+                    </tr>
+                    <tr>
+                        <td>جنس المتدربين</td>
+                        <td>{{workshop_request.trainees_sex}}</td>
+                    </tr>
+                    <tr>
+                        <td>رقم التواصل مع المسؤول</td>
+                        <td>{{workshop_request.director_phone_number}}</td>
+                    </tr>
+                    <tr>
+                        <td>إيميل التواصل مع المسؤول</td>
+                        <td>{{workshop_request.director_email}}</td>
+                    </tr>
+                    <tr>
+                        <td>التاريخ</td>
+                        <td>{{workshop_request.date}}</td>
+                    </tr>
+                    <tr>
+                        <td>هل يتوفر قاعة تدريبية مجهزة ؟</td>
+                        <td>
+                            {% if workshop_request.is_workshop_room_available %}
+                            نعم
+                            {% else %}
+                            لا
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>كيف سمعتم عن المبادرة</td>
+                        <td>{{workshop_request.about_us}}</td>
+                    </tr>
+                    <tr>
+                        <td>تاريخ الطلب</td>
+                        <td>{{workshop_request.created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>حالة الطلب</td>
+                        <td>{{workshop_request.status}}
+                        {% if workshop_request.status == "open" %}
+                            <a href="{% url 'change_workshop_request_status' workshop_request.pk %}" class="btn btn-info">اغلق الطلب</a>
+                        {% else %}
+                            <a href="{% url 'change_workshop_request_status' workshop_request.pk %}" class="btn btn-info">افتح الطلب</a>
+                        {% endif %}
+                        </td>
+                    </tr>
+                 </tbody>
+            </table>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}

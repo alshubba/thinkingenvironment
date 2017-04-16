@@ -1,0 +1,71 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ طلبات كن سفير
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+      {{ ambassador_request }}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <table class="table table-striped">
+                 <tbody>
+                    <tr>
+                        <td>اسم المقدم</td>
+                        <td>{{ambassador_request}}</td>
+                    </tr>
+                    <tr>
+                        <td>العمر</td>
+                        <td>{{ambassador_request.age}}</td>
+                    </tr>
+                    <tr>
+                        <td>الجنسية</td>
+                        <td>{{ambassador_request.nationality}}</td>
+                    </tr>
+                    <tr>
+                        <td>مكان الإقامة</td>
+                        <td>{{ambassador_request.place_of_stay}}</td>
+                    </tr>
+                    <tr>
+                        <td>المؤهل الدراسي</td>
+                        <td>{{ambassador_request.education}}</td>
+                    </tr>
+                    <tr>
+                        <td>نبذة عن مقدم الطلب</td>
+                        <td>{{ambassador_request.about_you}}</td>
+                    </tr>
+                    <tr>
+                        <td>ماذا تستطيع أن تقدم للمبادرة</td>
+                        <td>{{ambassador_request.what_can_you_provide}}</td>
+                    </tr>
+                    <tr>
+                        <td>تاريخ الطلب</td>
+                        <td>{{ambassador_request.created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>حالة الطلب</td>
+                        <td>{{ambassador_request.status}}
+                        {% if ambassador_request.status == "open" %}
+                            <a href="{% url 'change_ambassador_request_status' ambassador_request.pk %}" class="btn btn-info">اغلق الطلب</a>
+                        {% else %}
+                            <a href="{% url 'change_ambassador_request_status' ambassador_request.pk %}" class="btn btn-info">افتح الطلب</a>
+                        {% endif %}
+                        </td>
+                    </tr>
+                 </tbody>
+            </table>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}

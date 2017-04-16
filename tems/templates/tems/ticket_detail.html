@@ -1,0 +1,56 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+الاستشارات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+        <h1><a href="{% url 'ticket_list'%}">الاستشارات</a></h1>
+        <br>
+        <h1>
+      {{ticket.title}}
+          {% if ticket.status == "open" %}
+                <small class="label bg-green">مفتوح</small>
+          {% else %}
+                <small class="label bg-red">مغلق</small>
+          {% endif %}
+          {% if ticket.open_to_public %}
+                <small class="label bg-green">معروضة في ارشيف الاستشارات</small>
+          {% else %}
+                <small class="label bg-red">غير معروضة في ارشيف الاستشارات</small>
+          {% endif %}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+            <h3>المحتوى</h3>
+            <p>{{ ticket.body }}</p>
+
+            <h3>الرد</h3>
+            <p>
+                {% if ticket.answer %}
+                    {{ ticket.answer }}
+                {% else %}
+                    لم يتم بعد الرد على هذه الاستشارة
+                {% endif %}
+            </p>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}

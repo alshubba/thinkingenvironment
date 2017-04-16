@@ -1,0 +1,36 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+الدورات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+      أضف دورة جديدة
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                {{ form.as_p}}
+                <button class="btn btn-primary">حفظ</button>
+                {% if workshop %}
+                    <a href="{% url 'workshop_detail' workshop.pk %}" class="btn btn-default">الغاء</a>
+                {% else %}
+                    <a href="{% url 'workshop_list' %}" class="btn btn-default">الغاء</a>
+                {% endif %}
+            </form>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}>

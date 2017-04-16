@@ -1,0 +1,106 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ الدورات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+        <h1>
+            <a href="{% url 'workshop_list' %}">الدورات</a>
+        </h1>
+      <h1>
+      {{ workshop.title }}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <h3>معلومات الدورة</h3>
+            <table class="table table-striped">
+                 <tbody>
+                    <tr>
+                        <td>اسم المدرب</td>
+                        <td>{{ workshop.presenter }}</td>
+                    </tr>
+                    <tr>
+                        <td>تاريخ البداية</td>
+                        <td>{{ workshop.begin_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>تاريخ النهاية</td>
+                        <td>{{ workshop.end_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>السعر</td>
+                        <td>{{ workshop.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>البوستر</td>
+                        <td>
+                            <a href="{{ workshop.poster.url }}">
+                                <img src="{{ workshop.poster.url }}" style="width:100px">
+                            </a>
+                        </td>
+                    </tr>
+                 </tbody>
+            </table>
+            <a href="{% url 'workshop_edit' workshop.pk %}" class="btn btn-primary">تعديل</a>
+            {% if workshop.workshopregistration_set.all.count == 0 %}
+                <a href="{% url 'workshop_delete' workshop.pk %}" class="btn btn-danger" onclick="alert('هل أنت متأكد ؟')">حذف</a>
+            {% endif %}
+            <h3>الاشتراكات</h3>
+           <div class="custom-scroll table-responsive">
+                  <table id="registrationsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                          <th>اسم المستخدم</th>
+                          <th>الاسم بالعربي</th>
+                          <th>الاسم بالانجليزي</th>
+                          <th>الإيميل</th>
+                          <th>رقم الجوال</th>
+                          <th>الجنس</th>
+                          <th></th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for registration in workshop.workshopregistration_set.all %}
+                        <tr>
+                            <td>{{ registration.user }}</td>
+                            <td>{{ registration.arabic_name }}</td>
+                            <td>{{ registration.english_name }}</td>
+                            <td>{{ registration.email }}</td>
+                            <td>{{ registration.phone_number }}</td>
+                            <td>{{ registration.sex }}</td>
+                            <td><a href="{% url 'workshop_registration_delete' registration.pk %}" class="btn btn-danger">حذف</a></td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#registrationsTable').DataTable();
+    });
+</script>
+{% endblock %}>

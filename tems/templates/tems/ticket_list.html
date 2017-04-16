@@ -1,0 +1,117 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+الاستشارات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        الإستشارات
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">الإستشارات المفتوحة</a></li>
+              <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">الإستشارات المغلقة</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">جميع الإستشارات</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <div class="custom-scroll table-responsive">
+                  <table id="openTicketsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>العنوان</th>
+                        <th>اسم المستخدم</th>
+                        <th>تاريخها</th>
+                          <th>معروضة في ارشيف الاستشارات</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for ticket in open_tickets%}
+                        <tr>
+                            <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.title }}</a></td>
+                            <td>{{ ticket.user }}</td>
+                            <td>{{ ticket.created_at }}</td>
+                            <td> {{ticket.open_to_public }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+                  <div class="custom-scroll table-responsive">
+                  <table id="closedTicketsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>العنوان</th>
+                        <th>اسم المستخدم</th>
+                        <th>تاريخها</th>
+                          <th>معروضة في ارشيف الاستشارات</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for ticket in closed_tickets%}
+                        <tr>
+                            <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.title }}</a></td>
+                            <td>{{ ticket.user }}</td>
+                            <td>{{ ticket.created_at }}</td>
+                            <td> {{ticket.open_to_public }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+                  <div class="custom-scroll table-responsive">
+                  <table id="allTicketsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>العنوان</th>
+                        <th>اسم المستخدم</th>
+                        <th>تاريخها</th>
+                          <th>معروضة في ارشيف الاستشارات</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for ticket in tickets%}
+                        <tr>
+                            <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.title }}</a></td>
+                            <td>{{ ticket.user }}</td>
+                            <td>{{ ticket.created_at }}</td>
+                            <td> {{ticket.open_to_public }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#openTicketsTable').DataTable();
+        $('#closedTicketsTable').DataTable();
+        $('#allTicketsTable').DataTable();
+    });
+</script>
+{% endblock %}

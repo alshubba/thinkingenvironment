@@ -1,0 +1,71 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+التقييمات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+      <h1>
+        التقييمات
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+           <div class="custom-scroll table-responsive">
+                  <table id="workshopEvaluationsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>الدورة</th>
+                        <th>نوع التقييم</th>
+                        <th>المستخدم</th>
+                          <th>تاريخ التقييم</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for workshop_evaluation in workshop_evaluations %}
+                        <tr>
+                            <td><a href="{% url 'workshop_evaluation_detail' workshop_evaluation.pk %}">{{ workshop_evaluation.workshop.title }}</a></td>
+                            <td>
+                                {% if workshop_evaluation.evaluation_type == "workshop" %}
+                                    البرنامج التدريبي
+                                {% elif workshop_evaluation.evaluation_type == "presenter" %}
+                                المدرب
+                                {% else %}
+                                وحدة التدريب
+                                {% endif %}
+                            </td>
+                            <td>{{ workshop_evaluation.user }}</td>
+                            <td>{{ workshop_evaluation.created_at }}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#workshopEvaluationsTable').DataTable();
+    });
+</script>
+{% endblock %}>

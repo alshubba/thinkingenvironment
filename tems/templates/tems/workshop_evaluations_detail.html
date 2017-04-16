@@ -1,0 +1,112 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ التقييمات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+      <a href="{% url 'workshop_evaluations_list' %}">التقييمات</a>
+      </h1>
+        <h1>
+      {{ workshop_evaluation }}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <p>1 = غير موافق أبداً</p>
+            <p>2 = غير موافق</p>
+            <p>3 = موافق</p>
+            <p>4 = موافق جداً</p>
+            <table class="table table-striped">
+                 <tbody>
+                    <tr>
+                        <td>اسم الدورة</td>
+                        <td>{{workshop_evaluation.workshop.title}}</td>
+                    </tr>
+                    <tr>
+                        <td>اسم المستخدم</td>
+                        <td>{{workshop_evaluation.user}}</td>
+                    </tr>
+                    <tr>
+                        <td>نوع التقييم</td>
+                        <td>
+                            {% if workshop_evaluation.evaluation_type == "workshop" %}
+                                    البرنامج التدريبي
+                                {% elif workshop_evaluation.evaluation_type == "presenter" %}
+                                المدرب
+                                {% else %}
+                                وحدة التدريب
+                                {% endif %}
+                        </td>
+                    </tr>
+                 {% if workshop_evaluation.evaluation_type == "workshop" %}
+                    <tr>
+                        <td>الدورة لبت توقعاتي</td>
+                        <td>{{workshop_evaluation.workshop_met_expectations}}</td>
+                    </tr>
+                    <tr>
+                        <td>مدة الدورة كافية</td>
+                        <td>{{workshop_evaluation.workshop_enough_duration}}</td>
+                    </tr>
+                    <tr>
+                        <td>محتوى الدورة شامل</td>
+                        <td>{{workshop_evaluation.workshop_content}}</td>
+                    </tr>
+                    <tr>
+                        <td>المواد التدريبية متوفرة</td>
+                        <td>{{workshop_evaluation.workshop_equipment_available}}</td>
+                    </tr>
+                    <tr>
+                        <td>أوصي زملائي بأخذ هذه الدورة</td>
+                        <td>{{workshop_evaluation.workshop_recommend_friends}}</td>
+                    </tr>
+                 {% elif workshop_evaluation.evaluation_type == "presenter" %}
+                    <tr>
+                        <td>الالتزام بالوقت مرضي</td>
+                        <td>{{workshop_evaluation.presenter_on_time}}</td>
+                    </tr>
+                    <tr>
+                        <td>الالتزام بموضوع التدريب مرضي</td>
+                        <td>{{workshop_evaluation.presenter_on_topic}}</td>
+                    </tr>
+                    <tr>
+                        <td>القدرة على توصيل المعلومة مرضية</td>
+                        <td>{{workshop_evaluation.presenter_clear}}</td>
+                    </tr>
+                    <tr>
+                        <td>الفرصة لتبادل الاقتراحات مرضية</td>
+                        <td>{{workshop_evaluation.presenter_suggestions_exchange}}</td>
+                    </tr>
+                    <tr>
+                        <td>كفاءة المدرب مرضية</td>
+                        <td>{{workshop_evaluation.presenter_competent}}</td>
+                    </tr>
+                 {% else %}
+                    <tr>
+                        <td>اعدادات قاعة التدريب مرضية</td>
+                        <td>{{workshop_evaluation.organization_room_prepared}}</td>
+                    </tr>
+                    <tr>
+                        <td>مستوى التنظيم مرضي</td>
+                        <td>{{workshop_evaluation.organization_organized}}</td>
+                    </tr>
+                    <tr>
+                        <td>تعاون ممثل وحدة التدريب مرضي</td>
+                        <td>{{workshop_evaluation.organization_cooperative}}</td>
+                    </tr>
+                 {% endif %}
+                 </tbody>
+            </table>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}

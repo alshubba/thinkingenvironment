@@ -1,0 +1,72 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ الدورات
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+      <h1>
+        الدورات
+          <span class="pull-right">
+              <a href="{% url 'workshop_add' %}" class="btn btn-primary">
+                  <span class="fa fa-plus">   أضف دورة جديدة </span>
+              </a>
+          </span>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+           <div class="custom-scroll table-responsive">
+                  <table id="workshopsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>العنوان</th>
+                        <th>المدرب</th>
+                        <th>تاريخ البداية</th>
+                          <th>تاريخ النهاية</th>
+                          <th>السعر</th>
+                          <th>البوستر</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for workshop in workshops %}
+                        <tr>
+                            <td><a href="{% url 'workshop_detail' workshop.pk %}">{{ workshop.title }}</a></td>
+                            <td>{{ workshop.presenter }}</td>
+                            <td>{{ workshop.begin_date }}</td>
+                            <td>{{ workshop.end_date }}</td>
+                            <td>{{ workshop.price }}</td>
+                            <td><a href="{{ workshop.poster.url }}">اعرض</a></td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#workshopsTable').DataTable();
+    });
+</script>
+{% endblock %}>
