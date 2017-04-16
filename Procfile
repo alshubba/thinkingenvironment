@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath thinkingenvironment thinkingenvironment.wsgi --log-file -
+web: gunicorn thinking_environment_backend.wsgi --log-file -
