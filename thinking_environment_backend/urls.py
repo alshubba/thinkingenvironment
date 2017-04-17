@@ -24,8 +24,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tems/', include('tems.urls')),
     url(r'^api-token-auth/', CustomObtainAuthToken.as_view()),
-]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+"""
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += patterns('',
+                            (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+                                'document_root': settings.MEDIA_ROOT}))
+"""
