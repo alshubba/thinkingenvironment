@@ -1,8 +1,10 @@
+boto==2.46.1
 dj-database-url==0.4.2
 Django==1.11
 django-filter==1.0.2
 django-push-notifications==1.4.1
 djangorestframework==3.6.2
+django-storages==1.5.2
 gunicorn==19.7.1
 Markdown==2.6.8
 MarkupSafe==1.0
