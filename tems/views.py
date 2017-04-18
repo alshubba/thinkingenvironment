@@ -42,7 +42,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             teUser = models.ThinkingEnvUser.objects.get(username=user.username)
-            if (teUser.role == "admin") or (teUser.role == "expert") or (teUser.role == "user"):
+            if (teUser.role == "admin") or (teUser.role == "expert"):
                 login(request, user)
                 return HttpResponseRedirect("/tems/dashboard")
             else:
