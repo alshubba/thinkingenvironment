@@ -23,13 +23,13 @@ def my_callback(sender, **kwargs):
     print("Request finished!")
 
 """
-
+"""
 @receiver(post_save, sender = models.Ticket)
 def post_save_callback(sender, instance, **kwargs):
     serializer = serializers.models.Ticket(instance)
     print(instance)
     print(serializer.data)
-
+"""
 
 def forgot_password(request,token):
     user = get_object_or_404(models.ThinkingEnvUser, forgot_password_token = token)
