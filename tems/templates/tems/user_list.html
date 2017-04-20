@@ -1,0 +1,80 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+المستخدمين
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <center>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            {{message}}
+                        </center>
+                    </div>
+            {% else %}
+                    <div class="alert alert-success alert-dismissible">
+                        <center>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{message}}
+                        </center>
+                    </div>
+            {% endif %}
+        {% endfor %}
+      <h1>
+        المستخدمين
+      </h1>
+    </section>
+
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <a href="{% url 'user_add' %}" class="btn btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i> اضف مستخدم جديد</a>
+            <br>
+           <div class="custom-scroll table-responsive">
+                  <table id="usersTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>اسم المستخدم</th>
+                        <th>الاسم الأول</th>
+                        <th>اسم العائلة</th>
+                          <th>البريد الإلكتروني</th>
+                          <th>الصلاحية/نوع المستخدم</th>
+                          <th>تاريخ الانضمام</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for te_user in users %}
+                        <tr>
+                            <td>{{te_user}}</td>
+                            <td>{{te_user.first_name}}</td>
+                            <td>{{te_user.last_name}}</td>
+                            <td>{{te_user.email}}</td>
+                            <td>{{te_user.get_role_display}}</td>
+                            <td>{{te_user.date_joined}}</td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#usersTable').DataTable();
+    });
+</script>
+{% endblock %}

@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 class ThinkingEnvUser(User):
-    USER_ROLES = (("admin","Admin"),("user","User"), ("expert","Expert"),)
-    USER_SEX = (("male", "Male"), ("female", "Female"),)
-    USER_MARITAL_STATUS = (("married", "Married"), ("single", "Single"),)
+    USER_ROLES = (("admin","مدير"),("user","مستخدم"), ("expert","خبير"),)
+    USER_SEX = (("male", "ذكر"), ("female", "أنثى"),)
+    USER_MARITAL_STATUS = (("married", "متزوج"), ("single", "أعزب"),)
     role = models.CharField(max_length=255, default="user", choices=USER_ROLES)
     phone = models.CharField(max_length=255, null=True, blank=True)
     sex = models.CharField(max_length=255, null=True, blank=True, choices=USER_SEX)
@@ -14,6 +14,7 @@ class ThinkingEnvUser(User):
     neighborhood =  models.CharField(max_length=255, null=True, blank=True)
     marital_status =  models.CharField(max_length=255, null=True, blank=True, choices=USER_MARITAL_STATUS)
     forgot_password_token = models.CharField(max_length=255, null=True, blank=True)
+    created_manually = models.BooleanField(default=False)
 
 class Infographic(models.Model):
     title = models.CharField(max_length=255, default="")

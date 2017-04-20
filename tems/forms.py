@@ -1,8 +1,43 @@
 from django.contrib.admin.widgets import AdminDateWidget
-from django.forms import ModelForm, Textarea, SelectDateWidget, ImageField
+from django.forms import ModelForm, Textarea, SelectDateWidget, PasswordInput
 from django.utils.translation import ugettext_lazy as _
 
 from . import models
+
+class ThinkingEnvironmentUserForm(ModelForm):
+    class Meta:
+        model = models.ThinkingEnvUser
+        fields = ['first_name','last_name','email','country','city','neighborhood','sex', 'marital_status']
+        labels = {
+            'first_name': _('الإسم الأول'),
+            'last_name': _('اسم العائلة'),
+            'email': _('البريد الإلكتروني'),
+            'phone': _('رقم الجوال'),
+            'country': _('الدولة'),
+            'city': _('المدينة'),
+            'neighborhood': _('الحي'),
+            'sex': _('الجنس'),
+            'marital_status': _('الحالة الإجتماعية')
+        }
+
+class ThinkingEnvironmentAddUserForm(ModelForm):
+    class Meta:
+        model = models.ThinkingEnvUser
+        fields = ['username','password','first_name','last_name','email','role']
+        labels = {
+            'username': _('اسم المستخدم'),
+            'password': _('كلمة المرور'),
+            'first_name': _('الإسم الأول'),
+            'last_name': _('اسم العائلة'),
+            'email': _('البريد الإلكتروني'),
+            'role': _('نوع المستخدم')
+        }
+        widgets = {
+            'password': PasswordInput,
+        }
+        help_texts = {
+            'username': '',
+        }
 
 class TicketForm(ModelForm):
     class Meta:
