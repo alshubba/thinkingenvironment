@@ -1,7 +1,7 @@
 import dj_database_url
 from thinking_environment_backend.settings import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
