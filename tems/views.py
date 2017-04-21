@@ -28,7 +28,7 @@ def forgot_password_success(request):
     return render(request, "tems/forgot_password_success.html")
 
 def login_view(request):
-    send_mail("text email", "Here is the message.", "alshubba@gmail.com", ["alshubba@gmail.com"], fail_silently=False)
+    send_mail("test email", "Here is the message.", "alshubba@gmail.com", ["alshubba@gmail.com"], fail_silently=False)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -162,7 +162,7 @@ def ticket_edit(request, pk):
                 if status1 == "open" and status2 == "closed":
                     device = APNSDevice.objects.filter(user=ticket.user)
                     print(device)
-                    device.send_message("تم الرد على استشارتكم '{}'".format(ticket.title))
+                    device.send_message('تم الرد على استشارتكم : "{}"'.format(ticket.title))
             messages.success(request, "تم تعديل الاستشارة بنجاح")
             return HttpResponseRedirect("/tems/tickets/{}".format(ticket.pk))
     return render(request, "tems/ticket_edit.html", {"user": te_user,"ticket": ticket, "form": form})
@@ -199,7 +199,9 @@ def workshop_add(request):
     if request.method == "POST":
         form = forms.WorkshopForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            workshop = form.save()
+            devices = APNSDevice.objects.all()
+            devices.send_message("دورة جديدة : {}".format(workshop.title))
             messages.success(request, "تمت اضافة دورة جديدة بنجاح")
             return HttpResponseRedirect("/tems/workshops/")
     return render(request, "tems/workshop_edit.html", {"user": te_user, "form": form})
