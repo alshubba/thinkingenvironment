@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -27,6 +28,7 @@ def forgot_password_success(request):
     return render(request, "tems/forgot_password_success.html")
 
 def login_view(request):
+    send_mail("text email", "Here is the message.", "alshubba@gmail.com", ["alshubba@gmail.com"], fail_silently=False)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
