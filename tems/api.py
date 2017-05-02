@@ -27,7 +27,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         return Response({'token': token, 'user': serializer.data})
 
 class RetrieveUserByToken(views.APIView):
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         user = models.ThinkingEnvUser.objects.get(username=request.user)
         serializer = serializers.UserSerializer(user)
         return Response({"user": serializer.data})
