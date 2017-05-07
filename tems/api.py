@@ -58,6 +58,16 @@ class UserViewSet(viewsets.ModelViewSet):
         return (AllowAny() if self.request.method == 'POST'
                 else IsAuthenticated()),
 
+    def create(self, request, *args, **kwargs):
+        email = request.data['email']
+        try:
+            user_email = models.ThinkingEnvUser.objects.get(email = email)
+        except models.ThinkingEnvUser.DoesNotExist:
+            user_email = None
+        if user_email != None:
+            return Response({"email": ["email exists"]})
+        return super(UserViewSet, self).create(request, *args, **kwargs)
+
     @detail_route(methods=['get'])
     def tickets(self, request, pk=None):
         user = self.get_object()
