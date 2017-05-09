@@ -159,9 +159,11 @@ def ticket_edit(request, pk):
                 ticket.save()
                 status2 = ticket.status
                 if status1 == "open" and status2 == "closed":
-                    device = APNSDevice.objects.filter(user=ticket.user)
-                    print(device)
-                    device.send_message('تم الرد على استشارتكم : "{}"'.format(ticket.title))
+                    notification_title = 'تم الرد على استشارتكم : "{}"'.format(ticket.title)
+                    apns_device = APNSDevice.objects.filter(user=ticket.user)
+                    apns_device.send_message(notification_title)
+                    gcm_device = GCMDevice.objects.filter(user=ticket.user)
+                    gcm_device.send_message(notification_title)
             messages.success(request, "تم تعديل الاستشارة بنجاح")
             return HttpResponseRedirect("/tems/tickets/{}".format(ticket.pk))
     return render(request, "tems/ticket_edit.html", {"user": te_user,"ticket": ticket, "form": form})
@@ -199,8 +201,11 @@ def workshop_add(request):
         form = forms.WorkshopForm(request.POST, request.FILES)
         if form.is_valid():
             workshop = form.save()
-            devices = APNSDevice.objects.all()
-            devices.send_message("دورة جديدة : {}".format(workshop.title))
+            apns_devices = APNSDevice.objects.all()
+            gcm_devices = GCMDevice.objects.all()
+            notification_title = "دورة جديدة : {}".format(workshop.title)
+            apns_devices.send_message(notification_title)
+            gcm_devices.send_message(notification_title)
             messages.success(request, "تمت اضافة دورة جديدة بنجاح")
             return HttpResponseRedirect("/tems/workshops/")
     return render(request, "tems/workshop_edit.html", {"user": te_user, "form": form})
