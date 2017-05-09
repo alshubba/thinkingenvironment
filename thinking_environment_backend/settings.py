@@ -66,7 +66,7 @@ REST_FRAMEWORK = {
 
 PUSH_NOTIFICATIONS_SETTINGS = {
     "FCM_API_KEY": "[your api key]",
-    "GCM_API_KEY": "[your api key]",
+    "GCM_API_KEY": "AIzaSyC_hz1u5cZeOFzsPi7mG4fdJMy127XPTwk",
     "APNS_CERTIFICATE": os.path.join(BASE_DIR, 'tems/apns-prod-tems.pem'),
     "APNS_TOPIC": "com.alshubba.ThinkingEnvironmentApp",
     "WNS_PACKAGE_SECURITY_ID": "[your package security id, e.g: 'ms-app://e-3-4-6234...']",
