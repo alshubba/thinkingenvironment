@@ -161,9 +161,11 @@ def ticket_edit(request, pk):
                 if status1 == "open" and status2 == "closed":
                     notification_title = 'تم الرد على استشارتكم : "{}"'.format(ticket.title)
                     apns_device = APNSDevice.objects.filter(user=ticket.user)
-                    apns_device.send_message(notification_title)
+                    if apns_device:
+                        apns_device.send_message(notification_title)
                     gcm_device = GCMDevice.objects.filter(user=ticket.user)
-                    gcm_device.send_message(notification_title)
+                    if gcm_device:
+                        gcm_device.send_message(notification_title)
             messages.success(request, "تم تعديل الاستشارة بنجاح")
             return HttpResponseRedirect("/tems/tickets/{}".format(ticket.pk))
     return render(request, "tems/ticket_edit.html", {"user": te_user,"ticket": ticket, "form": form})
@@ -204,8 +206,10 @@ def workshop_add(request):
             apns_devices = APNSDevice.objects.all()
             gcm_devices = GCMDevice.objects.all()
             notification_title = "دورة جديدة : {}".format(workshop.title)
-            apns_devices.send_message(notification_title)
-            gcm_devices.send_message(notification_title)
+            if apns_devices:
+                apns_devices.send_message(notification_title)
+            if gcm_devices:
+                gcm_devices.send_message(notification_title)
             messages.success(request, "تمت اضافة دورة جديدة بنجاح")
             return HttpResponseRedirect("/tems/workshops/")
     return render(request, "tems/workshop_edit.html", {"user": te_user, "form": form})
