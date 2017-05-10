@@ -70,7 +70,6 @@ PUSH_NOTIFICATIONS_SETTINGS = {
     "GCM_ERROR_TIMEOUT": 1000,
     "APNS_CERTIFICATE": os.path.join(BASE_DIR, 'tems/apns-prod-tems.pem'),
     "APNS_TOPIC": "com.alshubba.ThinkingEnvironmentApp",
-    "APNS_USE_ALTERNATIVE_PORT": 2197,
     "WNS_PACKAGE_SECURITY_ID": "[your package security id, e.g: 'ms-app://e-3-4-6234...']",
     "WNS_SECRET_KEY": "[your app secret key, e.g.: 'KDiejnLKDUWodsjmewuSZkk']",
     "UPDATE_ON_DUPLICATE_REG_ID": True,
