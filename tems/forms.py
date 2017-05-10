@@ -77,3 +77,16 @@ class InfographicForm(ModelForm):
         labels = {
             'image': _('حمل الصورة')
         }
+
+class BookForm(ModelForm):
+    class Meta:
+        model = models.Book
+        fields = ['title', 'description', 'file']
+        widgets = {
+            'description': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
+        labels = {
+            'title': _('العنوان'),
+            'description': _('الشرح'),
+            'file': _('حمل الملف')
+        }

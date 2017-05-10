@@ -309,8 +309,35 @@ def workshop_evaluation_detail(request, pk):
     workshop_evaluation = get_object_or_404(models.WorkshopEvaluation, pk=pk)
     return render(request, "tems/workshop_evaluations_detail.html", {"user": te_user, "workshop_evaluation": workshop_evaluation})
 
+@login_required
+def book_list(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    books = models.Book.objects.all()
+    return render(request, "tems/book_list.html", {"user": te_user, "books": books})
 
+@login_required
+def book_add(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    form = forms.BookForm()
+    if request.method == "POST":
+        form = forms.BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "تمت اضافة كتيب جديد بنجاح")
+            return HttpResponseRedirect("/tems/books/")
+    return render(request, "tems/book_add.html", {"user": te_user, "form": form})
 
+def book_edit(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    book = get_object_or_404(models.Book, pk=pk)
+    form = forms.BookForm(instance=book)
+    if request.method == "POST":
+        form = forms.BookForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "تمت تعديل الكتيب بنجاح")
+            return HttpResponseRedirect("/tems/books/")
+    return render(request, "tems/book_add.html", {"user": te_user, "form": form, "book": book})
 
 
 
