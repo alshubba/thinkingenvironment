@@ -76,3 +76,13 @@ class AmbassadorRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.AmbassadorRequest
         fields = '__all__'
+
+class BookSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.Book
+        fields = ('id', 'title', 'description', 'url')
+
+    def get_url(self, obj):
+        return obj.file.url

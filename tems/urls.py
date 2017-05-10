@@ -12,6 +12,7 @@ router.register(r'v1/workshops', api.WorkshopViewSet)
 router.register(r'v1/workshop_registrations', api.WorkshopRegistrationViewSet)
 router.register(r'v1/workshop_evaluations', api.WorkshopEvaluationViewSet)
 router.register(r'v1/ambassador_requests', api.AmbassadorRequestViewSet)
+router.register(r'v1/books', api.BookViewSet)
 router.register(r'v1/device/apns', APNSDeviceAuthorizedViewSet)
 router.register(r'v1/device/gcm', GCMDeviceAuthorizedViewSet)
 
@@ -51,6 +52,7 @@ urlpatterns = [
     url(r'^books/$', views.book_list, name="book_list"),
     url(r'^books/add$', views.book_add, name="book_add"),
     url(r'^books/(?P<pk>\d+)/edit/$', views.book_edit, name='book_edit'),
+    url(r'^books/(?P<pk>\d+)/delete/$', views.book_delete, name='book_delete'),
     url(r'^api/', include(router.urls, namespace="api")),
     url(r'api/v1/get_user', api.RetrieveUserByToken.as_view()),
     url(r'api/v1/check_email', api.RetrieveUserByEmail.as_view()),

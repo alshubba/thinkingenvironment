@@ -163,3 +163,7 @@ class WorkshopEvaluationViewSet(viewsets.ModelViewSet):
 class AmbassadorRequestViewSet(viewsets.ModelViewSet):
     queryset = models.AmbassadorRequest.objects.all()
     serializer_class = serializers.AmbassadorRequestSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = models.Book.objects.all()
+    serializer_class = serializers.BookSerializer

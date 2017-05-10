@@ -339,6 +339,14 @@ def book_edit(request,pk):
             return HttpResponseRedirect("/tems/books/")
     return render(request, "tems/book_add.html", {"user": te_user, "form": form, "book": book})
 
+def book_delete(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    book = get_object_or_404(models.Book, pk=pk)
+    book.file.delete(False)
+    book.delete()
+    messages.success(request, "تم حذف الكتيب بنجاح")
+    return HttpResponseRedirect("/tems/books/")
+
 
 
 
