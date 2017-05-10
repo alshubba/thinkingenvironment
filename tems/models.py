@@ -145,6 +145,10 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     file = models.FileField(upload_to='books/', null=False)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.title

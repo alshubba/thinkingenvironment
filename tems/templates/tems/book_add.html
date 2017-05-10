@@ -9,7 +9,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      أضف كتيب جديد
+          {% if book %}
+            {{book.title}}
+          {% else %}
+             أضف كتيب جديد
+          {% endif %}
       </h1>
     </section>
 

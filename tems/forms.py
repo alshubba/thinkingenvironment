@@ -81,12 +81,13 @@ class InfographicForm(ModelForm):
 class BookForm(ModelForm):
     class Meta:
         model = models.Book
-        fields = ['title', 'description', 'file']
+        fields = ['title', 'description', 'order','file']
         widgets = {
             'description': Textarea(attrs={'cols': 80, 'rows': 20}),
         }
         labels = {
             'title': _('العنوان'),
             'description': _('الشرح'),
+            'order': _('الترتيب'),
             'file': _('حمل الملف')
         }
