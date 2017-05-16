@@ -1,6 +1,8 @@
 from datetime import datetime
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.template import loader
 from rest_framework import views, viewsets, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import detail_route, list_route
@@ -45,6 +47,9 @@ class RetrieveUserByEmail(views.APIView):
         if user != None:
             user.forgot_password_token = str(uuid.uuid4())
             user.save()
+            email_body = loader.render_to_string("tems/email_forgot_password.html",{"user":user})
+            send_mail("تطبيق البيئة المعززة للتفكير - إعادة إنشاء كلمة المرور", "", "do_not_reply@thinking_environment.com", [user.email], False,
+                      None, None, None, email_body)
             return Response({"result": "success"})
         return Response({"result": "error - user does not exist"})
 

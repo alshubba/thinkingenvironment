@@ -1,14 +1,12 @@
-from django.core.mail import send_mail
-from django.core.mail import EmailMessage
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.template import loader
 from push_notifications.models import APNSDevice, GCMDevice
 
-from . import models
-from . import forms
+from . import forms, models
 
 def forgot_password(request,token):
     user = get_object_or_404(models.ThinkingEnvUser, forgot_password_token = token)
@@ -50,9 +48,6 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
-    send_mail("test mail","This is a test mail","do_not_reply@thinking_environment.com", ["alshubba@gmail.com"])
-    email = EmailMessage("test email", "This is a test email", to=["alshubba@gmail.com"])
-    email.send()
     te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     users_count = models.ThinkingEnvUser.objects.count()
     tickets_count = models.Ticket.objects.filter(status="open").count()
