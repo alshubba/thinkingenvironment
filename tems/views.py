@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -49,6 +50,9 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
+    send_mail("test mail","This is a test mail","do_not_reply@thinking_environment.com", ["alshubba@gmail.com"])
+    email = EmailMessage("test email", "This is a test email", to=["alshubba@gmail.com"])
+    email.send()
     te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     users_count = models.ThinkingEnvUser.objects.count()
     tickets_count = models.Ticket.objects.filter(status="open").count()
