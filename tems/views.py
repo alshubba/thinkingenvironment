@@ -118,7 +118,6 @@ def user_add(request):
     form = forms.ThinkingEnvironmentAddUserForm()
     if request.method == "POST":
         form = forms.ThinkingEnvironmentAddUserForm(data=request.POST)
-        print(form.is_valid())
         if form.is_valid():
             new_user = form.save()
             new_user.set_password(form.cleaned_data['password'])

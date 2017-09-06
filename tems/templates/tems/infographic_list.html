@@ -34,6 +34,7 @@
 
                       <thead>
                       <tr>
+                        <th></th>
                         <th>الانفوجرافيك</th>
                         <th></th>
                       </tr>
@@ -41,6 +42,7 @@
                       <tbody>
                       {% for infographic in infographics %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td><a href="{{ infographic.image.url }}">
                                 <img src="{{ infographic.image.url }}" style="max-width:200px">
                             </a></td>
