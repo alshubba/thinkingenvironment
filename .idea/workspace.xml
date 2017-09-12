@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30d035f9-d46e-4bc3-b184-a66879b93449" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/migrations/0037_auto_20170906_2245.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/migrations/0038_infographic_thumbnail.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/migrations/0039_auto_20170911_1830.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/ambassador_city_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/ambassador_city_edit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/ambassador_country_add.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/ambassador_country_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/ambassador_country_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/admin.py" afterPath="$PROJECT_DIR$/tems/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/api.py" afterPath="$PROJECT_DIR$/tems/api.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/forms.py" afterPath="$PROJECT_DIR$/tems/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/models.py" afterPath="$PROJECT_DIR$/tems/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/serializers.py" afterPath="$PROJECT_DIR$/tems/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/templates/tems/infographic_list.html" afterPath="$PROJECT_DIR$/tems/templates/tems/infographic_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/templates/tems/main.html" afterPath="$PROJECT_DIR$/tems/templates/tems/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/urls.py" afterPath="$PROJECT_DIR$/tems/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/views.py" afterPath="$PROJECT_DIR$/tems/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thinking_environment_backend/settings.py" afterPath="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="thinking_environment_backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,7 +45,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thinking_environment_backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
@@ -120,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="105">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -190,13 +171,13 @@
         <option value="$PROJECT_DIR$/tems/templates/tems/ambassador_city_detail.html" />
         <option value="$PROJECT_DIR$/tems/api.py" />
         <option value="$PROJECT_DIR$/tems/django_thumbs.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/tems/models.py" />
         <option value="$PROJECT_DIR$/tems/urls.py" />
         <option value="$PROJECT_DIR$/tems/views.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/infographic_list.html" />
         <option value="$PROJECT_DIR$/tems/serializers.py" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -508,9 +489,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="23" width="1440" height="821" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24665257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24665257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -870,14 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thinking_environment_backend/deploy_settings/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -931,6 +904,14 @@
           <folding>
             <element signature="e#662#694#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
