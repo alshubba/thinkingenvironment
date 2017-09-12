@@ -264,11 +264,13 @@ def infographic_add(request):
     te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     form = forms.InfographicForm()
     if request.method == "POST":
+        #for file in request.FILES.getlist('image'):
         form = forms.InfographicForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            for image in request.FILES.getlist('image'):
+                models.Infographic.objects.create(image = image)
             messages.success(request, "تمت اضافة انفوجرافيك جديد بنجاح")
-            return HttpResponseRedirect("/tems/infographics/")
+        return HttpResponseRedirect("/tems/infographics/")
     return render(request, "tems/infographic_add.html", {"user": te_user, "form": form})
 
 @login_required
