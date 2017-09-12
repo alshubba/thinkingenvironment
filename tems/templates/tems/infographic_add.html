@@ -35,6 +35,9 @@
 <script>
    $(document).ready(function(){
         $('#id_image').attr("multiple", true)
+        $('form').on("submit",function(){
+            $('button').prop('disabled', true)
+        })
     });
 </script>
 {% endblock %}>
