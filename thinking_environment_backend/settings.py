@@ -187,3 +187,4 @@ S3_BUCKET = 'thinkingenvironment'
 AWS_STORAGE_BUCKET_NAME = S3_BUCKET
 MEDIA_URL = "https://s3.amazonaws.com/%s/" % S3_BUCKET
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
