@@ -274,6 +274,7 @@ def infographic_add(request):
 @login_required
 def infographic_delete(request,pk):
     infographic = get_object_or_404(models.Infographic, pk=pk)
+    infographic.image.delete_thumbnails()
     infographic.image.delete(False)
     infographic.delete()
     messages.success(request, "تم حذف الانفوجرافيك بنجاح")
@@ -344,7 +345,6 @@ def book_edit(request,pk):
     return render(request, "tems/book_add.html", {"user": te_user, "form": form, "book": book})
 
 def book_delete(request,pk):
-    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     book = get_object_or_404(models.Book, pk=pk)
     book.file.delete(False)
     book.delete()
@@ -352,14 +352,96 @@ def book_delete(request,pk):
     return HttpResponseRedirect("/tems/books/")
 
 
+@login_required
+def ambassador_country_list(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    countries = models.AmbassadorCountry.objects.all()
+    return render(request, "tems/ambassador_country_list.html", {"user": te_user, "countries": countries})
 
+@login_required
+def ambassador_country_add(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    form = forms.AmbassadorCountryForm()
+    formset = forms.AmbassadorCityFormset(queryset = form.instance.ambassadorcity_set.all())
+    if request.method == "POST":
+        form = forms.AmbassadorCountryForm(request.POST)
+        formset = forms.AmbassadorCityFormset(request.POST, queryset = form.instance.ambassadorcity_set.all())
+        if form.is_valid() and formset.is_valid():
+            country = form.save()
+            cities = formset.save(commit=False)
+            for city in cities:
+                city.ambassador_country = country
+                city.save()
+            messages.success(request, "تمت اضافة دولة جديدة بنجاح")
+            return HttpResponseRedirect("/tems/ambassador_countries/")
+    return render(request, "tems/ambassador_country_add.html", {"user": te_user, "form": form, "formset": formset})
 
+@login_required
+def ambassador_country_edit(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    country = get_object_or_404(models.AmbassadorCountry, pk=pk)
+    form = forms.AmbassadorCountryForm(instance=country)
+    formset = forms.AmbassadorCityFormset(queryset=form.instance.ambassadorcity_set.all())
+    if request.method == "POST":
+        form = forms.AmbassadorCountryForm(request.POST,instance=country)
+        formset = forms.AmbassadorCityFormset(request.POST, queryset=form.instance.ambassadorcity_set.all())
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            cities = formset.save(commit=False)
+            for city in cities:
+                city.ambassador_country = country
+                city.save()
+            messages.success(request, "تمت تعديل الدولة بنجاح")
+            return HttpResponseRedirect("/tems/ambassador_countries/{}/".format(country.pk))
+    return render(request, "tems/ambassador_country_add.html", {"user": te_user, "form": form, "country": country, "formset":formset})
 
+@login_required
+def ambassador_country_delete(request,pk):
+    country = get_object_or_404(models.AmbassadorCountry, pk=pk)
+    country.delete()
+    messages.success(request, "تم حذف الدولة بنجاح")
+    return HttpResponseRedirect("/tems/ambassador_countries/")
 
+@login_required
+def ambassador_country_detail(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    country = get_object_or_404(models.AmbassadorCountry, pk=pk)
+    return render(request, "tems/ambassador_country_detail.html", {"user": te_user, "country": country})
 
+@login_required
+def ambassador_city_detail(request, country_pk, city_pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    country = get_object_or_404(models.AmbassadorCountry, pk=country_pk)
+    city = get_object_or_404(models.AmbassadorCity, pk=city_pk)
+    return render(request, "tems/ambassador_city_detail.html", {"user": te_user, "country": country, "city": city})
 
+@login_required
+def ambassador_city_edit(request, country_pk, city_pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    country = get_object_or_404(models.AmbassadorCountry, pk=country_pk)
+    city = get_object_or_404(models.AmbassadorCity, pk=city_pk)
+    form = forms.AmbassadorCityForm(instance=city)
+    formset = forms.AmbassadorExtraRepresentativeFormset(queryset=form.instance.ambassadorextrarepresentative_set.all())
+    if request.method == "POST":
+        form = forms.AmbassadorCityForm(request.POST,instance=city)
+        formset = forms.AmbassadorExtraRepresentativeFormset(
+            request.POST, queryset=form.instance.ambassadorextrarepresentative_set.all())
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            reps = formset.save(commit=False)
+            for rep in reps:
+                rep.ambassador_city = city
+                rep.save()
+            for rep in formset.deleted_objects:
+                rep.delete()
+            messages.success(request, "تمت تعديل المدينة بنجاح")
+            return HttpResponseRedirect("/tems/ambassador_countries/{}/city/{}/".format(country_pk, city_pk))
+    return render(request, "tems/ambassador_city_edit.html", {"user": te_user, "country": country, "city": city, "form": form, "formset": formset})
 
-
-
-
-
+@login_required
+def ambassador_city_delete(request, country_pk, city_pk):
+    country = get_object_or_404(models.AmbassadorCountry, pk=country_pk)
+    city = get_object_or_404(models.AmbassadorCity, pk=city_pk)
+    city.delete()
+    messages.success(request, "تم حذف المدينة بنجاح")
+    return HttpResponseRedirect("/tems/ambassador_countries/{}".format(country.pk))

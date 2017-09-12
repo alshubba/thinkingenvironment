@@ -172,3 +172,7 @@ class AmbassadorRequestViewSet(viewsets.ModelViewSet):
 class BookViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.Book.objects.all()
     serializer_class = serializers.BookSerializer
+
+class AmbassadorCountryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = models.AmbassadorCountry.objects.all()
+    serializer_class = serializers.AmbassadorCountrySerializer

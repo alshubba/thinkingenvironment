@@ -1,0 +1,65 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+   قائمة ممثلي الدول
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+          {% if country %}
+            {{country.name}}
+          {% else %}
+             أضف دولة جديدة
+          {% endif %}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+
+            <form action="" method="post">
+                {% csrf_token%}
+                {{ form.as_p}}
+                <hr>
+                <h2>المدن</h2>
+                {{ formset.management_form }}
+                <table id="citiesTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>المدينة</th>
+                                <th>ممثل المدينة</th>
+                                <th>حذف ؟</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in formset %}
+                                <tr>
+                                    <td>{{ form.id }}{{ form.name }}</td>
+                                    <td>{{ form.city_representative }}</td>
+                                    <td>
+                                        {% if form.instance.pk %}
+                                            {{ form.DELETE }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <button class="btn btn-primary">حفظ</button>
+                {% if country %}
+                    <a href="{% url 'ambassador_country_detail' country.pk %}" class="btn btn-default">الغاء</a>
+                {% else %}
+                    <a href="{% url 'ambassador_country_list' %}" class="btn btn-default">الغاء</a>
+                {% endif %}
+            </form>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}>

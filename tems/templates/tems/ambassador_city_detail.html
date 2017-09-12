@@ -1,9 +1,8 @@
 {% extends "tems/main.html" %}
 {% load static from staticfiles %}
-{% load thumbnail %}
 
 {% block title %}
-الانفوجرافيك
+{{country}} | {{city}}
 {% endblock %}
 
 {% block content %}
@@ -17,10 +16,16 @@
               </div>
         {% endfor %}
       <h1>
-       الانفوجرافيك
-      <span class="pull-right">
-              <a href="{% url 'infographic_add' %}" class="btn btn-primary">
-                  <span class="fa fa-plus">   أضف انفوجرافيك جديد </span>
+            <a href="{% url 'ambassador_country_detail' country.pk %}">{{country}}</a><br>
+            {{city}} <br>
+          الممثل الرئيسي: {{city.city_representative}}
+
+          <span class="pull-right">
+              <a href="{% url 'ambassador_city_edit' country.pk city.pk %}" class="btn btn-primary">
+                  <span class="fa fa-pencil-square-o">   تعديل </span>
+              </a>
+               <a href="{% url 'ambassador_city_delete' country.pk city.pk %}" class="btn btn-danger">
+                  <span class="fa fa-times">   حذف </span>
               </a>
           </span>
       </h1>
@@ -31,23 +36,17 @@
         <div class="box box-default">
         <div class="box-body">
            <div class="custom-scroll table-responsive">
-                  <table id="infographicsTable" class="table table-bordered table-hover">
+                  <table id="citiesTable" class="table table-bordered table-hover">
 
                       <thead>
                       <tr>
-                        <th></th>
-                        <th>الانفوجرافيك</th>
-                        <th></th>
+                        <th>ممثلين إضافيين</th>
                       </tr>
                     </thead>
                       <tbody>
-                      {% for infographic in infographics %}
+                      {% for r in city.ambassadorextrarepresentative_set.all %}
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td><a href="{{ infographic.image.url }}">
-                                <img src="{{ infographic.image|thumbnail_url:'thumbnail' }}" style="max-width:200px">
-                            </a></td>
-                            <td><a href="{% url 'infographic_delete' infographic.pk %}" class="btn btn-danger">حذف</a></td>
+                            <td>{{r}}</td>
                         </tr>
                       {% endfor %}
                       </tbody>
@@ -59,3 +58,11 @@
       </div>
     </section>
 {% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#citiesTable').DataTable();
+    });
+</script>
+{% endblock %}>

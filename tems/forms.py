@@ -1,5 +1,5 @@
 from django.contrib.admin.widgets import AdminDateWidget
-from django.forms import ModelForm, Textarea, SelectDateWidget, PasswordInput
+from django.forms import ModelForm, Textarea, SelectDateWidget, PasswordInput, modelformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from . import models
@@ -91,3 +91,35 @@ class BookForm(ModelForm):
             'order': _('الترتيب'),
             'file': _('حمل الملف')
         }
+
+class AmbassadorCountryForm(ModelForm):
+    class Meta:
+        model = models.AmbassadorCountry
+        fields = ['name', 'main_representative']
+        labels = {
+            'name': _('إسم الدولة'),
+            'main_representative': _('الممثل الرئيسي')
+        }
+
+AmbassadorCityFormset = modelformset_factory(
+    models.AmbassadorCity,
+    fields= ['name', 'city_representative'],
+    extra=5,
+    can_delete=True
+)
+
+class AmbassadorCityForm(ModelForm):
+    class Meta:
+        model = models.AmbassadorCity
+        fields = ['name', 'city_representative']
+        labels = {
+            'name': _('إسم المدينة'),
+            'city_representative': _('ممثل المدينة')
+        }
+
+AmbassadorExtraRepresentativeFormset = modelformset_factory(
+    models.AmbassadorExtraRepresentative,
+    fields=['name'],
+    extra=5,
+    can_delete=True
+)

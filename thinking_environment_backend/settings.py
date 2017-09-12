@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
     'rest_framework',
     'rest_framework.authtoken',
     'push_notifications',
@@ -106,6 +107,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'thinking_environment_backend.wsgi.application'
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'thumbnail': {'size': (200, 200), 'crop': True},
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -166,11 +172,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
+#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 MEDIA_ROOT = '/media/'
 
 #MEDIA_URL = '/media/'
 
 # AMAZON AWS S3 FOR STORING MEDIA FILES
+
 AWS_QUERYSTRING_AUTH = False
 AWS_ACCESS_KEY_ID = 'AKIAI2H7ZZCVF6HTZQNA'
 AWS_SECRET_ACCESS_KEY = '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'

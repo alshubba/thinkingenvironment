@@ -1,0 +1,55 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+{{city}}
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+          {{city}}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+
+            <form action="" method="post">
+                {% csrf_token%}
+                {{ form.as_p}}
+                <hr>
+                <h2>الممثلين الإضافيين</h2>
+                {{ formset.management_form }}
+                <table id="additionalRepresentativesTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>ممثل إضافي</th>
+                                <th>حذف ؟</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in formset %}
+                                <tr>
+                                    <td>{{ form.id }}{{ form.name }}</td>
+                                    <td>
+                                        {% if form.instance.pk %}
+                                            {{ form.DELETE }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <button class="btn btn-primary">حفظ</button>
+                <a href="{% url 'ambassador_city_detail' country.pk city.pk %}" class="btn btn-default">الغاء</a>
+            </form>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}>

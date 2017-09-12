@@ -26,13 +26,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 class InfographicSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
+    thumbnail = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Infographic
-        fields = ('id', 'title', 'url')
+        fields = ('id', 'title', 'url', 'thumbnail')
 
     def get_url(self,obj):
         return obj.image.url
+
+    def get_thumbnail(self,obj):
+        return obj.image['thumbnail'].url
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
@@ -86,3 +90,22 @@ class BookSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         return obj.file.url
+
+class AmbassadorExtraRepresentativeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.AmbassadorExtraRepresentative
+        fields = ("id","name",)
+
+class AmbassadorCitySerializer(serializers.ModelSerializer):
+    #ambassadorextrarepresentative_set = AmbassadorExtraRepresentativeSerializer(many=True, read_only=True)
+    ambassadorextrarepresentative_set = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = models.AmbassadorCity
+        fields = ("id","name", "city_representative", "ambassadorextrarepresentative_set")
+
+class AmbassadorCountrySerializer(serializers.ModelSerializer):
+    ambassadorcity_set = AmbassadorCitySerializer(many=True, read_only=True)
+    class Meta:
+        model = models.AmbassadorCountry
+        fields = ("id","name", "main_representative", "ambassadorcity_set")
+        depth = 1
