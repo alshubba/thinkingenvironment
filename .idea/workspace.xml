@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30d035f9-d46e-4bc3-b184-a66879b93449" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/templates/tems/infographic_add.html" afterPath="$PROJECT_DIR$/tems/templates/tems/infographic_add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thinking_environment_backend/settings.py" afterPath="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/serializers.py" afterPath="$PROJECT_DIR$/tems/serializers.py" />
     </list>
     <ignored path="thinking_environment_backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,7 +91,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thinking_environment_backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="554">
@@ -103,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tems/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            <state relative-caret-position="449">
+              <caret line="100" column="67" selection-start-line="100" selection-start-column="67" selection-end-line="100" selection-end-column="67" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -186,12 +184,12 @@
         <option value="$PROJECT_DIR$/tems/models.py" />
         <option value="$PROJECT_DIR$/tems/urls.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/infographic_list.html" />
-        <option value="$PROJECT_DIR$/tems/serializers.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/deploy_settings/__init__.py" />
         <option value="$PROJECT_DIR$/tems/views.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/infographic_add.html" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
+        <option value="$PROJECT_DIR$/tems/serializers.py" />
       </list>
     </option>
   </component>
@@ -862,16 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tems/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tems/templates/tems/infographic_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -931,6 +919,16 @@
         <state relative-caret-position="554">
           <caret line="187" column="22" selection-start-line="187" selection-start-column="22" selection-end-line="187" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tems/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="100" column="67" selection-start-line="100" selection-start-column="67" selection-end-line="100" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

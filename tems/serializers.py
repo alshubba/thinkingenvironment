@@ -97,11 +97,12 @@ class AmbassadorExtraRepresentativeSerializer(serializers.ModelSerializer):
         fields = ("id","name",)
 
 class AmbassadorCitySerializer(serializers.ModelSerializer):
-    #ambassadorextrarepresentative_set = AmbassadorExtraRepresentativeSerializer(many=True, read_only=True)
     ambassadorextrarepresentative_set = serializers.StringRelatedField(many=True)
+    ambassador_country = serializers.StringRelatedField(many=False)
+
     class Meta:
         model = models.AmbassadorCity
-        fields = ("id","name", "city_representative", "ambassadorextrarepresentative_set")
+        fields = ("id","name", "city_representative", "ambassadorextrarepresentative_set", "ambassador_country")
 
 class AmbassadorCountrySerializer(serializers.ModelSerializer):
     ambassadorcity_set = AmbassadorCitySerializer(many=True, read_only=True)
