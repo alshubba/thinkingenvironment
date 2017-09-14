@@ -53,6 +53,13 @@ class RetrieveUserByEmail(views.APIView):
             return Response({"result": "success"})
         return Response({"result": "error - user does not exist"})
 
+class IncreaseUserDownloadCount(views.APIView):
+    def post(self, request, format=None):
+        user = models.ThinkingEnvUser.objects.get(username=request.user)
+        count = user.booklet_download_count
+        user.booklet_download_count = count + 1
+        user.save()
+        return Response({"result": "success"})
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = models.ThinkingEnvUser.objects.all()

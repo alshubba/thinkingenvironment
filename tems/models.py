@@ -15,6 +15,7 @@ class ThinkingEnvUser(User):
     marital_status =  models.CharField(max_length=255, null=True, blank=True, choices=USER_MARITAL_STATUS)
     forgot_password_token = models.CharField(max_length=255, null=True, blank=True)
     created_manually = models.BooleanField(default=False)
+    booklet_download_count = models.IntegerField(default=0)
 
 class Infographic(models.Model):
     title = models.CharField(max_length=255, default="")
@@ -146,6 +147,7 @@ class Book(models.Model):
     description = models.CharField(max_length=255)
     file = models.FileField(upload_to='books/', null=False)
     order = models.IntegerField(default=0)
+    main_guide = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['order']

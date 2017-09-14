@@ -81,7 +81,7 @@ class InfographicForm(ModelForm):
 class BookForm(ModelForm):
     class Meta:
         model = models.Book
-        fields = ['title', 'description', 'order','file']
+        fields = ['title', 'description', 'order','file', 'main_guide']
         widgets = {
             'description': Textarea(attrs={'cols': 80, 'rows': 20}),
         }
@@ -89,7 +89,8 @@ class BookForm(ModelForm):
             'title': _('العنوان'),
             'description': _('الشرح'),
             'order': _('الترتيب'),
-            'file': _('حمل الملف')
+            'file': _('حمل الملف'),
+            'main_guide': _('دليل البيئة المعززة للتفكير ؟')
         }
 
 class AmbassadorCountryForm(ModelForm):

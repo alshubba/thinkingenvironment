@@ -65,6 +65,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls, namespace="api")),
     url(r'api/v1/get_user', api.RetrieveUserByToken.as_view()),
     url(r'api/v1/check_email', api.RetrieveUserByEmail.as_view()),
+    url(r'api/v1/increase_download_count', api.IncreaseUserDownloadCount.as_view())
 ]
 
 

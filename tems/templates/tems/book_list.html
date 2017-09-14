@@ -38,6 +38,7 @@
                         <th>الشرح</th>
                         <th>الملف</th>
                           <th>الترتيب</th>
+                          <th>دليل البيئة المعززة للتفكير ؟</th>
                           <th></th>
                           <th></th>
                       </tr>
@@ -49,6 +50,7 @@
                             <td>{{ book.description }}</td>
                             <td><a href="{{ book.file.url }}">اعرض</a></td>
                             <td>{{book.order}}</td>
+                            <td>{{book.main_guide}}</td>
                             <td><a class="btn btn-primary" href="{% url 'book_edit' book.pk %}">تعديل</a></td>
                             <td><a class="btn btn-danger" href="{% url 'book_delete' book.pk %}">حذف</a></td>
                         </tr>
