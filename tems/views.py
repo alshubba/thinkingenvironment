@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.template import loader
 from push_notifications.models import APNSDevice, GCMDevice
 
 from . import forms, models
@@ -51,6 +51,11 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    books = models.Book.objects.all()
+    book = books[0]
+    email = EmailMessage("attachment test", "this is test", "support@gmail.com", ["alshubba@gmail.com"])
+    email.attach(book.file.name,book.image.read(), "application/pdf")
+    email.send()
     users_count = models.ThinkingEnvUser.objects.count()
     tickets_count = models.Ticket.objects.filter(status="open").count()
     workshops_count = models.Workshop.objects.count()
