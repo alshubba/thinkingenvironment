@@ -54,7 +54,7 @@ def dashboard(request):
     books = models.Book.objects.all()
     book = books[0]
     email = EmailMessage("attachment test", "this is test", "support@gmail.com", ["alshubba@gmail.com"])
-    email.attach(book.file.name,book.image.read(), "application/pdf")
+    email.attach(book.file.name,book.file.read(), "application/pdf")
     email.send()
     users_count = models.ThinkingEnvUser.objects.count()
     tickets_count = models.Ticket.objects.filter(status="open").count()
