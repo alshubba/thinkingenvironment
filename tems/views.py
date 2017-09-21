@@ -91,7 +91,6 @@ def profile_password(request):
         new_password = request.POST["new_password"]
         repeat_password = request.POST["repeat_password"]
         user = authenticate(username=request.user, password=current_password)
-        print(user)
         if user == None:
             messages.error(request, "كلمة المرور الحالية غير صحيحة")
             return HttpResponseRedirect("/tems/profile/password")

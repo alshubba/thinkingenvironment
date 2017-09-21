@@ -61,6 +61,16 @@ class IncreaseUserDownloadCount(views.APIView):
         user.save()
         return Response({"result": "success"})
 
+class TrainingBooklet(views.APIView):
+    def get(self, request, format=None):
+        books = models.Book.objects.filter(training_guide=True)
+        if not books:
+            return Response({})
+        else:
+            book = models.Book.objects.get(training_guide=True)
+            serializer = serializers.BookSerializer(book)
+            return Response(serializer.data)
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = models.ThinkingEnvUser.objects.all()
     serializer_class = serializers.UserSerializer
@@ -177,7 +187,7 @@ class AmbassadorRequestViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AmbassadorRequestSerializer
 
 class BookViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = models.Book.objects.all()
+    queryset = models.Book.objects.filter(training_guide=False)
     serializer_class = serializers.BookSerializer
 
 class AmbassadorCountryViewSet(viewsets.ReadOnlyModelViewSet):
