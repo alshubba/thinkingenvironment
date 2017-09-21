@@ -148,6 +148,7 @@ class Book(models.Model):
     file = models.FileField(upload_to='books/', null=False)
     order = models.IntegerField(default=0)
     main_guide = models.BooleanField(default=False)
+    training_guide = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['order']

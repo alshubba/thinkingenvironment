@@ -86,7 +86,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Book
-        fields = ('id', 'title', 'description','order', 'url', 'main_guide')
+        fields = ('id', 'title', 'description','order', 'url', 'main_guide', 'training_guide')
 
     def get_url(self, obj):
         return obj.file.url
