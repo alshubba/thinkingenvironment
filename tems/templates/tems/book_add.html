@@ -21,16 +21,33 @@
     <section class="content">
         <div class="box box-default">
         <div class="box-body">
-
+            <h3>ملاحظات:</h3>
+            <ol>
+                <li>صيغة الملف المقبولة هي pdf</li>
+                <li>خانة الترتيب هي ما يستعمله التطبيق لعرض الكتبيات ، فترتيب 0 سيكون أول كتيب يعرض ، و ترتيب 1 سيكون ثاني كتيب وهكذا</li>
+                <li>لتقديم خدمة مميزة للمستخدمين، يفضل كون حجم الملف أقل من ٢٥ ميغا وذلك لتسهيل عملية تحميله وعرضه في التطبيق</li>
+                <li>بعض المواقع التي تقوم بتصغير حجم ملفات الpdf هي: <a href="https://pdfresizer.com/resize">https://pdfresizer.com/resize</a> و <a href="https://www.pdf2go.com/resize-pdf">https://www.pdf2go.com/resize-pdf</a></li>
+                <li> الرجاء الإشارة عند التحميل ما اذا كان الملف هو الدليل أو الحقيبة التدريبية حتى يتم عرضهم بشكل صحيح في التطبيق</li>
+            </ol>
+            <hr>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token%}
                 {{ form.as_p}}
                 <button class="btn btn-primary">حفظ</button>
                 <a href="{% url 'book_list' %}" class="btn btn-default">الغاء</a>
             </form>
-
         </div>
         <!-- /.box-body -->
       </div>
     </section>
+{% endblock %}>
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('form').on("submit",function(){
+            $('button').prop('disabled', true)
+        })
+    });
+</script>
 {% endblock %}>
