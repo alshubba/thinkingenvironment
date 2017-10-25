@@ -20,6 +20,8 @@ router.register(r'v1/device/gcm', GCMDeviceAuthorizedViewSet)
 
 
 urlpatterns = [
+    url(r'^$', views.main_view, name="main"),
+    url(r'^contact_us/$', views.contact_us, name='contact_us'),
     url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
     url(r'^forgot_password/(?P<token>[\w\-]+)/$', views.forgot_password, name='forgot_password'),

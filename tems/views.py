@@ -1,13 +1,29 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from push_notifications.models import APNSDevice, GCMDevice
 
 from . import forms, models
 
+def main_view(request):
+    return render(request, "tems/main_view.html")
+
+def contact_us(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        question = request.POST['question']
+        email_body = loader.render_to_string("tems/email_contact_us.html", {"name": name, "email": email, "question": question})
+        send_mail("تطبيق البيئة المعززة للتفكير - استفسار جديد", "", "do_not_reply@thinking_environment.com",
+                  ["alshubba@gmail.com"], False,
+                  None, None, None, email_body)
+        messages.success(request, "تم إرسال استفساركم بنجاح")
+        return HttpResponseRedirect("/tems/contact_us")
+    return render(request, "tems/contact_us.html")
 def forgot_password(request,token):
     user = get_object_or_404(models.ThinkingEnvUser, forgot_password_token = token)
     if request.method == "POST":

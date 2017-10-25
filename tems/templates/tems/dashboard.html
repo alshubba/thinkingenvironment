@@ -154,3 +154,14 @@
     <!-- /.content -->
 
 {% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$( document ).ready(
+  var http = require("http");
+  setInterval(function() {
+      http.get("http://thinkingenvironment.herokuapp.com");
+  }, 300000);
+)
+{% endblock%}
+</script>

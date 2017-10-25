@@ -1,0 +1,125 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>البيئة المعززة للتفكير</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="{% static 'tems/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'tems/dist/css/AdminLTE.min.css' %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static 'tems/plugins/iCheck/square/blue.css' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition login-page">
+{% for message in messages %}
+    {% if message.tags == "error" %}
+            <div class="alert alert-danger alert-dismissible">
+                <center>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                    {{message}}
+                </center>
+            </div>
+    {% else %}
+            <div class="alert alert-success alert-dismissible">
+                <center>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{message}}
+                </center>
+            </div>
+    {% endif %}
+{% endfor %}
+<div class="login-box">
+  <div class="login-logo">
+      <img src="{% static 'tems/images/logo-with-text-small.png' %}" style="max-width:200px">
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <h3 style="text-align:center">تواصل معنا</h3>
+      <br>
+      <center>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="name"> الإسم </label>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" id="name" name="name">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="email"> الإيميل </label>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" id="email" name="email">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="email"> الإستفسار </label>
+                </div>
+                <div class="col-sm-7">
+                    <textarea id="question" name="question" rows="4"></textarea>
+                </div>
+            </div>
+
+            <br>
+            <em id="formError" style="color:red"></em>
+            <br><br>
+            <button id="submitButton" class="btn btn-primary">ارسل</button>
+        </form>
+      </center>
+
+
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 2.2.3 -->
+<script src="{% static 'tems/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{% static 'tems/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script>
+    $(document).ready(
+        $("#submitButton").on("click",function(e){
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var question = $("#question").val()
+
+            if(name=="" || email == "" || question == ""){
+                e.preventDefault()
+                $("#formError").html("الرجاء تعبئة جميع الخانات")
+            }else{
+
+            }
+        })
+    )
+</script>
+</body>
+</html>
+>
