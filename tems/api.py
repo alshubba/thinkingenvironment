@@ -137,7 +137,7 @@ class TicketViewSet(viewsets.ModelViewSet):
 
     def create(self, validated_data):
         response = super(TicketViewSet, self).create(validated_data)
-        managers = models.ThinkingEnvUser.objects.filter(role="admin")
+        managers = models.ThinkingEnvUser.objects.filter(role="expert")
         ticket = models.Ticket.objects.get(pk=response.data["id"])
         emails = []
         if managers:
