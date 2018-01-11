@@ -59,11 +59,7 @@
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            {% if user.role == "admin" %}
               <a href="{% url 'user_list' %}" class="small-box-footer">المزيد <i class="fa fa-arrow-circle-right"></i></a>
-            {% else %}
-              <div class="small-box-footer"></div>
-            {% endif %}
           </div>
         </div>
         <!-- ./col -->

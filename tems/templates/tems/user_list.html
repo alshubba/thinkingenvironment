@@ -35,7 +35,9 @@
     <section class="content">
         <div class="box box-default">
         <div class="box-body">
-            <a href="{% url 'user_add' %}" class="btn btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i> اضف مستخدم جديد</a>
+            {% if user.role == "admin" %}
+                <a href="{% url 'user_add' %}" class="btn btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i> اضف مستخدم جديد</a>
+            {% endif %}
             <br>
            <div class="custom-scroll table-responsive">
                   <table id="usersTable" class="table table-bordered table-hover">

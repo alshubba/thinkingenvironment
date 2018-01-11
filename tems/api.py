@@ -145,7 +145,7 @@ class TicketViewSet(viewsets.ModelViewSet):
                 emails.append(m.email)
         email_body = loader.render_to_string("tems/email_new_ticket.html", {"ticket": ticket})
         send_mail("تطبيق البيئة المعززة للتفكير - إستشارة جديدة", "", "do_not_reply@thinking_environment.com",
-                  ["alshubba@gmail.com"], False,
+                  emails, False,
                   None, None, None, email_body)
 
         return response

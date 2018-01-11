@@ -130,17 +130,20 @@ def user_list(request):
 @login_required
 def user_add(request):
     te_user = models.ThinkingEnvUser.objects.get(username=request.user)
-    form = forms.ThinkingEnvironmentAddUserForm()
-    if request.method == "POST":
-        form = forms.ThinkingEnvironmentAddUserForm(data=request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            new_user.set_password(form.cleaned_data['password'])
-            new_user.created_manually = True
-            new_user.save()
-            messages.success(request, "تم اضافة مستخدم جديد بنجاح")
-            return HttpResponseRedirect("/tems/users/")
-    return render(request, 'tems/user_add.html', {"user": te_user, "form": form})
+    if te_user.role == "admin":
+        form = forms.ThinkingEnvironmentAddUserForm()
+        if request.method == "POST":
+            form = forms.ThinkingEnvironmentAddUserForm(data=request.POST)
+            if form.is_valid():
+                new_user = form.save()
+                new_user.set_password(form.cleaned_data['password'])
+                new_user.created_manually = True
+                new_user.save()
+                messages.success(request, "تم اضافة مستخدم جديد بنجاح")
+                return HttpResponseRedirect("/tems/users/")
+        return render(request, 'tems/user_add.html', {"user": te_user, "form": form})
+    else:
+        return HttpResponseRedirect("/tems/users/")
 
 @login_required
 def ticket_list(request):
