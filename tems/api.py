@@ -135,6 +135,21 @@ class TicketViewSet(viewsets.ModelViewSet):
     queryset = models.Ticket.objects.all()
     serializer_class = serializers.TicketSerializer
 
+    def create(self, validated_data):
+        response = super(TicketViewSet, self).create(validated_data)
+        managers = models.ThinkingEnvUser.objects.filter(role="admin")
+        ticket = models.Ticket.objects.get(pk=response.data["id"])
+        emails = []
+        if managers:
+            for m in managers:
+                emails.append(m.email)
+        email_body = loader.render_to_string("tems/email_forgot_password.html", {"ticket": ticket})
+        send_mail("تطبيق البيئة المعززة للتفكير - إستشارة جديدة", "", "do_not_reply@thinking_environment.com",
+                  ["alshubba@gmail.com"], False,
+                  None, None, None, email_body)
+
+        return response
+
     @list_route()
     def public(self, request):
         tickets = models.Ticket.objects.filter(open_to_public=True)
