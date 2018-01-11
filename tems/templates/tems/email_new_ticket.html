@@ -40,6 +40,9 @@
 			padding:0;
 			width:100%;
 		}
+		.mcnPreviewText{
+			display:none !important;
+		}
 		#outlook a{
 			padding:0;
 		}
@@ -367,7 +370,7 @@
 		}
 
 }	@media only screen and (max-width: 480px){
-		.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer{
+		.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImageCardRightImageContentContainer{
 			max-width:100% !important;
 			width:100% !important;
 		}
@@ -388,7 +391,7 @@
 		}
 
 }	@media only screen and (max-width: 480px){
-		.mcnImageCardTopImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
+		.mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCaptionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
 			padding-top:18px !important;
 		}
 
@@ -539,12 +542,15 @@
 
 }</style></head>
     <body>
+		<!--*|IF:MC_PREVIEW_TEXT|*-->
+		<!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">*|MC_PREVIEW_TEXT|*</span><!--<![endif]-->
+		<!--*|END:IF|*-->
         <center>
             <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
                 <tr>
                     <td align="center" valign="top" id="bodyCell">
                         <!-- BEGIN TEMPLATE // -->
-						<!--[if gte mso 9]>
+						<!--[if (gte mso 9)|(IE)]>
 						<table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
 						<tr>
 						<td align="center" valign="top" width="600" style="width:600px;">
@@ -568,7 +574,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-left:18px; padding-bottom:9px; padding-right:18px;">
 
-                           إستشارة جديدة
+                            استشارة جديدة
                         </td>
                     </tr>
                 </tbody></table>
@@ -642,13 +648,9 @@
 
                             <h1>&nbsp;</h1>
 
-<p style="text-align: right;">
-هناك استشارة جديدة بعنوان "{{ticket.title}}" من " {{ticket.user.last_name}} {{ticket.user.first_name}}"
-    <br>
-   يمكنك الإطلاع على محتوى الاستشارة والرد عليها من خلال لوحة التحكم
-    <br>
-<a id="new_ticket_url" name="new_ticket_url" href="http://thinkingenvironment.herokuapp.com/tems/tickets/{{ticket.id}}/">اضغط هنا</a>}
-</p>
+<p style="text-align: right;">هناك استشارة جديدة بعنوان <strong>{{ticket.title}}</strong> من <strong>{{ticket.user.first_name}} {{ticket.user.last_name}}</strong><br>
+يمكنك الإطلاع على محتوى الاستشارة والرد عليها من خلال لوحة التحكم<br>
+<a href="http://thinkingenvironment.herokuapp.com/tems/tickets/{{ticket.id}}/" id="dashboard_url" name="dashboard_url" target="_blank">اضغط هنا للدخول</a></p>
 
                         </td>
                     </tr>
@@ -883,7 +885,7 @@
 </table></td>
                             </tr>
                         </table>
-						<!--[if gte mso 9]>
+						<!--[if (gte mso 9)|(IE)]>
 						</td>
 						</tr>
 						</table>
