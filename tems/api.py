@@ -143,7 +143,7 @@ class TicketViewSet(viewsets.ModelViewSet):
         if managers:
             for m in managers:
                 emails.append(m.email)
-        email_body = loader.render_to_string("tems/email_forgot_password.html", {"ticket": ticket})
+        email_body = loader.render_to_string("tems/email_new_ticket.html", {"ticket": ticket})
         send_mail("تطبيق البيئة المعززة للتفكير - إستشارة جديدة", "", "do_not_reply@thinking_environment.com",
                   ["alshubba@gmail.com"], False,
                   None, None, None, email_body)
