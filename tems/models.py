@@ -28,9 +28,9 @@ class Infographic(models.Model):
 class Ticket(models.Model):
     TICKET_STATUS = (("open", "Open"),("closed", "Closed"),)
     title = models.CharField(max_length=255)
-    body = models.CharField(max_length=255)
+    body = models.TextField()
     status = models.CharField(max_length=255, choices=TICKET_STATUS, default="open")
-    answer = models.CharField(max_length=255, null=True, blank=True)
+    answer = models.TextField(null=True, blank=True)
     replier = models.IntegerField(null=True, blank=True) # id of the person who replied
     open_to_public = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -133,8 +133,8 @@ class AmbassadorRequest(models.Model):
     nationality = models.CharField(max_length=255)
     place_of_stay = models.CharField(max_length=255)
     education = models.CharField(max_length=255)
-    about_you = models.CharField(max_length=255)
-    what_can_you_provide = models.CharField(max_length=255)
+    about_you = models.TextField()
+    what_can_you_provide = models.TextField()
     status = models.CharField(max_length=255, choices=REQUEST_STATUS, default="open")
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(ThinkingEnvUser)
