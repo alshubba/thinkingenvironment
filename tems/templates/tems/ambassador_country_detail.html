@@ -16,8 +16,12 @@
               </div>
         {% endfor %}
       <h1>
-      <a href="{% url 'ambassador_country_list' %}">قائمة الدول</a><br>
-      {{country}} <br>
+      <a href="{% url 'ambassador_country_list' %}">قائمة الدول</a><br><br>
+      {{country}}
+          {% if country.flag %}
+          <img src="{{country.flag.url}}" width="50"/>
+          {% endif %}
+          <br><br>
           الممثل الرئيسي: {{country.main_representative}}
           <span class="pull-right">
               <a href="{% url 'ambassador_country_edit' country.pk %}" class="btn btn-primary">

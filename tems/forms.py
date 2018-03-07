@@ -97,10 +97,11 @@ class BookForm(ModelForm):
 class AmbassadorCountryForm(ModelForm):
     class Meta:
         model = models.AmbassadorCountry
-        fields = ['name', 'main_representative']
+        fields = ['name', 'main_representative', 'flag']
         labels = {
             'name': _('إسم الدولة'),
-            'main_representative': _('الممثل الرئيسي')
+            'main_representative': _('الممثل الرئيسي'),
+            'flag': _('العلم')
         }
 
 AmbassadorCityFormset = modelformset_factory(

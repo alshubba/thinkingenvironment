@@ -105,8 +105,13 @@ class AmbassadorCitySerializer(serializers.ModelSerializer):
         fields = ("id","name", "city_representative", "ambassadorextrarepresentative_set", "ambassador_country")
 
 class AmbassadorCountrySerializer(serializers.ModelSerializer):
+    flag_url = serializers.SerializerMethodField()
     ambassadorcity_set = AmbassadorCitySerializer(many=True, read_only=True)
     class Meta:
         model = models.AmbassadorCountry
-        fields = ("id","name", "main_representative", "ambassadorcity_set")
+        fields = ("id","name","flag_url", "main_representative", "ambassadorcity_set")
         depth = 1
+
+    def get_flag_url(self, obj):
+        if obj.flag:
+            return obj.flag.url

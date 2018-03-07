@@ -159,6 +159,7 @@ class Book(models.Model):
 class AmbassadorCountry(models.Model):
     name = models.CharField(max_length=255)
     main_representative = models.CharField(max_length=255, null=True, blank=True)
+    flag = models.ImageField(upload_to='countries/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

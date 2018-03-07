@@ -384,7 +384,7 @@ def ambassador_country_add(request):
     form = forms.AmbassadorCountryForm()
     formset = forms.AmbassadorCityFormset(queryset = form.instance.ambassadorcity_set.all())
     if request.method == "POST":
-        form = forms.AmbassadorCountryForm(request.POST)
+        form = forms.AmbassadorCountryForm(request.POST, request.FILES)
         formset = forms.AmbassadorCityFormset(request.POST, queryset = form.instance.ambassadorcity_set.all())
         if form.is_valid() and formset.is_valid():
             country = form.save()
@@ -403,7 +403,9 @@ def ambassador_country_edit(request,pk):
     form = forms.AmbassadorCountryForm(instance=country)
     formset = forms.AmbassadorCityFormset(queryset=form.instance.ambassadorcity_set.all())
     if request.method == "POST":
-        form = forms.AmbassadorCountryForm(request.POST,instance=country)
+        if request.POST.get("flag-clear", False):
+            country.flag.delete(False)
+        form = forms.AmbassadorCountryForm(request.POST, request.FILES, instance=country)
         formset = forms.AmbassadorCityFormset(request.POST, queryset=form.instance.ambassadorcity_set.all())
         if form.is_valid() and formset.is_valid():
             form.save()
@@ -418,6 +420,7 @@ def ambassador_country_edit(request,pk):
 @login_required
 def ambassador_country_delete(request,pk):
     country = get_object_or_404(models.AmbassadorCountry, pk=pk)
+    country.flag.delete(False)
     country.delete()
     messages.success(request, "تم حذف الدولة بنجاح")
     return HttpResponseRedirect("/tems/ambassador_countries/")
