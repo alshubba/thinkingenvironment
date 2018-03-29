@@ -16,6 +16,8 @@ class ThinkingEnvUser(User):
     forgot_password_token = models.CharField(max_length=255, null=True, blank=True)
     created_manually = models.BooleanField(default=False)
     booklet_download_count = models.IntegerField(default=0)
+    main_booklet_email_count = models.IntegerField(default=0)
+    date_main_booklet_email_sent = models.DateTimeField(null=True, blank=True)
 
 class Infographic(models.Model):
     title = models.CharField(max_length=255, default="")
@@ -181,3 +183,11 @@ class AmbassadorExtraRepresentative(models.Model):
 
     def __str__(self):
         return self.name
+
+class AuditLog(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True)
+    event = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(ThinkingEnvUser)
+
+    def __str__(self):
+        return self.title

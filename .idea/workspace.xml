@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30d035f9-d46e-4bc3-b184-a66879b93449" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tems/templates/tems/email_send_book_link.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/api.py" afterPath="$PROJECT_DIR$/tems/api.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/models.py" afterPath="$PROJECT_DIR$/tems/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tems/urls.py" afterPath="$PROJECT_DIR$/tems/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thinking_environment_backend/settings.py" afterPath="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
     </list>
     <ignored path="thinking_environment_backend.iws" />
@@ -26,8 +32,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tems/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="405" column="49" selection-start-line="405" selection-start-column="49" selection-end-line="405" selection-end-column="49" />
+            <state relative-caret-position="486">
+              <caret line="349" column="13" selection-start-line="349" selection-start-column="13" selection-end-line="349" selection-end-column="13" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -35,31 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ambassador_country_add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tems/templates/tems/ambassador_country_add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ambassador_country_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tems/templates/tems/ambassador_country_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="75" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tems/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+            <state relative-caret-position="540">
+              <caret line="71" column="62" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -68,10 +54,51 @@
       <file leaf-file-name="api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tems/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="209" column="43" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
+            <state relative-caret-position="525">
+              <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="email_send_book_link.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tems/templates/tems/email_send_book_link.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="649" column="17" selection-start-line="649" selection-start-column="17" selection-end-line="649" selection-end-column="17" />
+              <folding>
+                <marker date="1522340059700" expanded="true" signature="213:341" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="243:332" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="15939:15951" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="15952:16042" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="15963:16042" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="16022:16034" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="16035:16042" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="16632:16643" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="16644:16658" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="16653:16658" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="16731:16743" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="16744:16749" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="17329:17341" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="17342:17347" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="19655:19666" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="19667:19681" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="19676:19681" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="19754:19766" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="19767:19772" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="21910:21988" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="21951:21988" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="22128:22169" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="24523:24564" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="26923:26964" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="29339:29380" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="33448:33459" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="33460:33474" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="33469:33474" ph="..." />
+                <marker date="1522340059700" expanded="false" signature="33547:33559" ph="..." />
+                <marker date="1522340059700" expanded="true" signature="33560:33565" ph="..." />
               </folding>
             </state>
           </provider>
@@ -80,8 +107,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tems/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+            <state relative-caret-position="346">
+              <caret line="91" column="27" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -90,18 +117,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tems/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="161" column="74" selection-start-line="161" selection-start-column="74" selection-end-line="161" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tems/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+            <state relative-caret-position="255">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -110,18 +127,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/thinking_environment_backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="189" column="48" selection-start-line="189" selection-start-column="48" selection-end-line="189" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thinking_environment_backend/deploy_settings/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="451">
+              <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -143,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/thinking_environment_backend/views.py" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/urls.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/ticket_list.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/workshop_list.html" />
@@ -179,27 +185,28 @@
         <option value="$PROJECT_DIR$/tems/templates/tems/infographic_add.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/book_list.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/book_add.html" />
-        <option value="$PROJECT_DIR$/tems/urls.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/email_new_ticket.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/dashboard.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/user_list.html" />
         <option value="$PROJECT_DIR$/runtime.txt" />
         <option value="$PROJECT_DIR$/tems/templates/tems/main.html" />
-        <option value="$PROJECT_DIR$/tems/api.py" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/deploy_settings/__init__.py" />
         <option value="$PROJECT_DIR$/tems/forms.py" />
-        <option value="$PROJECT_DIR$/tems/models.py" />
         <option value="$PROJECT_DIR$/tems/templates/tems/ambassador_country_add.html" />
         <option value="$PROJECT_DIR$/tems/templates/tems/ambassador_country_detail.html" />
         <option value="$PROJECT_DIR$/tems/views.py" />
         <option value="$PROJECT_DIR$/tems/serializers.py" />
+        <option value="$PROJECT_DIR$/tems/urls.py" />
+        <option value="$PROJECT_DIR$/tems/templates/tems/email_send_book_link.html" />
+        <option value="$PROJECT_DIR$/tems/models.py" />
+        <option value="$PROJECT_DIR$/tems/api.py" />
         <option value="$PROJECT_DIR$/thinking_environment_backend/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1800" />
-    <option name="y" value="36" />
+    <option name="x" value="1760" />
+    <option name="y" value="61" />
     <option name="width" value="1440" />
     <option name="height" value="821" />
   </component>
@@ -228,8 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -259,24 +264,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="thinking_environment_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinking_environment_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinking_environment_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thinking_environment_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deploy_settings" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -332,6 +319,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,7 +493,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1800" y="36" width="1440" height="821" extended-state="0" />
+    <frame x="1760" y="61" width="1440" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24665257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -563,13 +552,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tems/templates/tems/ticket_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tems/templates/tems/profile_password.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -747,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -755,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,22 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1770">
           <caret line="118" column="45" selection-start-line="118" selection-start-column="45" selection-end-line="118" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tems/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tems/templates/tems/email_new_ticket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="629" column="33" selection-start-line="629" selection-start-column="33" selection-end-line="629" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -821,43 +785,22 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tems/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tems/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="161" column="74" selection-start-line="161" selection-start-column="74" selection-end-line="161" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tems/templates/tems/infographic_add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="71" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tems/templates/tems/ambassador_country_add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="360">
           <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/countries/SAAR0001.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/media/countries/SAAR0001.jpg" />
     <entry file="file://$PROJECT_DIR$/tems/templates/tems/ambassador_country_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -866,38 +809,140 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tems/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tems/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="91" column="27" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tems/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="71" column="62" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tems/templates/tems/email_new_ticket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="650" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="899" selection-end-column="0" />
+          <folding>
+            <marker date="1515696282224" expanded="true" signature="213:341" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="243:332" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="15939:15951" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="15952:16042" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="15963:16042" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="16022:16034" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="16035:16042" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="16632:16643" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="16644:16658" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="16653:16658" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="16731:16743" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="16744:16749" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="17329:17341" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="17342:17347" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="19655:19666" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="19667:19681" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="19676:19681" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="19754:19766" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="19767:19772" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="22058:22136" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="22099:22136" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="22276:22317" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="24671:24712" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="27071:27112" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="29487:29528" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="33596:33607" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="33608:33622" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="33617:33622" ph="..." />
+            <marker date="1515696282224" expanded="false" signature="33695:33707" ph="..." />
+            <marker date="1515696282224" expanded="true" signature="33708:33713" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tems/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="405" column="49" selection-start-line="405" selection-start-column="49" selection-end-line="405" selection-end-column="49" />
+        <state relative-caret-position="486">
+          <caret line="349" column="13" selection-start-line="349" selection-start-column="13" selection-end-line="349" selection-end-column="13" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tems/templates/tems/email_send_book_link.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="649" column="17" selection-start-line="649" selection-start-column="17" selection-end-line="649" selection-end-column="17" />
+          <folding>
+            <marker date="1522340059700" expanded="true" signature="213:341" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="243:332" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="15939:15951" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="15952:16042" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="15963:16042" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="16022:16034" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="16035:16042" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="16632:16643" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="16644:16658" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="16653:16658" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="16731:16743" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="16744:16749" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="17329:17341" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="17342:17347" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="19655:19666" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="19667:19681" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="19676:19681" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="19754:19766" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="19767:19772" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="21910:21988" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="21951:21988" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="22128:22169" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="24523:24564" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="26923:26964" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="29339:29380" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="33448:33459" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="33460:33474" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="33469:33474" ph="..." />
+            <marker date="1522340059700" expanded="false" signature="33547:33559" ph="..." />
+            <marker date="1522340059700" expanded="true" signature="33560:33565" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tems/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tems/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="209" column="43" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
+        <state relative-caret-position="525">
+          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tems/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thinking_environment_backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="189" column="48" selection-start-line="189" selection-start-column="48" selection-end-line="189" selection-end-column="48" />
+        <state relative-caret-position="451">
+          <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
           <folding />
         </state>
       </provider>

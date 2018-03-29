@@ -48,7 +48,7 @@ class RetrieveUserByEmail(views.APIView):
             user.forgot_password_token = str(uuid.uuid4())
             user.save()
             email_body = loader.render_to_string("tems/email_forgot_password.html",{"user":user})
-            send_mail("تطبيق البيئة المعززة للتفكير - إعادة إنشاء كلمة المرور", "", "do_not_reply@thinking_environment.com", [user.email], False,
+            send_mail("تطبيق البيئة المعززة للتفكير - إعادة إنشاء كلمة المرور", "", "Thinking Environment", [user.email], False,
                       None, None, None, email_body)
             return Response({"result": "success"})
         return Response({"result": "error - user does not exist"})
@@ -60,6 +60,27 @@ class IncreaseUserDownloadCount(views.APIView):
         user.booklet_download_count = count + 1
         user.save()
         return Response({"result": "success"})
+
+class SendBookLinkEmail(views.APIView):
+    def post(self, request, format=None):
+        user = models.ThinkingEnvUser.objects.get(username=request.user)
+        id = request.data.get('id', None)
+        if id == None:
+            return Response({"result": "error - id not provided"})
+        book = get_object_or_404(models.Book, id=id)
+        if book != None:
+            email_title = "تطبيق البيئة المعززة للتفكير - {}".format(book.title)
+            email_body = loader.render_to_string("tems/email_send_book_link.html", {"user":user,"book":book})
+            send_mail(email_title, "", "Thinking Environment", [user.email], False,
+                      None, None, None, email_body)
+            models.AuditLog.objects.create(title="email_sent", event="", user=user)
+            if book.main_guide:
+                count = user.main_booklet_email_count
+                user.main_booklet_email_count = count + 1
+                user.date_main_booklet_email_sent = datetime.now()
+                user.save()
+            return Response({"result": "success"})
+        return Response({"result": "error - book does not exist"})
 
 class TrainingBooklet(views.APIView):
     def get(self, request, format=None):
@@ -144,7 +165,7 @@ class TicketViewSet(viewsets.ModelViewSet):
             for m in managers:
                 emails.append(m.email)
         email_body = loader.render_to_string("tems/email_new_ticket.html", {"ticket": ticket})
-        send_mail("تطبيق البيئة المعززة للتفكير - إستشارة جديدة", "", "do_not_reply@thinking_environment.com",
+        send_mail("تطبيق البيئة المعززة للتفكير - إستشارة جديدة", "", "Thinking Environment",
                   emails, False,
                   None, None, None, email_body)
 

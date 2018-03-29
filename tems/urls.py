@@ -68,7 +68,8 @@ urlpatterns = [
     url(r'api/v1/get_user', api.RetrieveUserByToken.as_view()),
     url(r'api/v1/check_email', api.RetrieveUserByEmail.as_view()),
     url(r'api/v1/increase_download_count', api.IncreaseUserDownloadCount.as_view()),
-    url(r'api/v1/training_book', api.TrainingBooklet.as_view())
+    url(r'api/v1/training_book', api.TrainingBooklet.as_view()),
+    url(r'api/v1/email_book', api.SendBookLinkEmail.as_view())
 ]
 
 
