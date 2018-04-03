@@ -73,7 +73,9 @@ class SendBookLinkEmail(views.APIView):
             email_body = loader.render_to_string("tems/email_send_book_link.html", {"user":user,"book":book})
             send_mail(email_title, "", "Thinking Environment", [user.email], False,
                       None, None, None, email_body)
-            models.AuditLog.objects.create(title="email_sent", event="", user=user)
+            models.AuditLog.objects.create(title="email_sent",
+                                           event="sent an email with a link to book {} to user {}".format(book.title, user.username),
+                                           user=user)
             if book.main_guide:
                 count = user.main_booklet_email_count
                 user.main_booklet_email_count = count + 1
@@ -229,3 +231,7 @@ class BookViewSet(viewsets.ReadOnlyModelViewSet):
 class AmbassadorCountryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.AmbassadorCountry.objects.all()
     serializer_class = serializers.AmbassadorCountrySerializer
+
+class ExpertViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = models.Expert.objects.all()
+    serializer_class = serializers.ExpertSerializer

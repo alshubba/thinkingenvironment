@@ -185,9 +185,22 @@ class AmbassadorExtraRepresentative(models.Model):
         return self.name
 
 class AuditLog(models.Model):
-    title = models.CharField(max_length=255, null=True, blank=True)
-    event = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=255)
+    event = models.CharField(max_length=255)
     user = models.ForeignKey(ThinkingEnvUser)
 
     def __str__(self):
         return self.title
+
+class Expert(models.Model):
+    name = models.CharField(max_length=255)
+    avatar = models.ImageField(upload_to='experts/', null=True)
+    twitter = models.CharField(max_length=255, null=True, blank=True)
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+    youtube = models.CharField(max_length=255, null=True, blank=True)
+    snapchat = models.CharField(max_length=255, null=True, blank=True)
+    instgram = models.CharField(max_length=255, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

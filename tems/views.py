@@ -468,3 +468,48 @@ def ambassador_city_delete(request, country_pk, city_pk):
     city.delete()
     messages.success(request, "تم حذف المدينة بنجاح")
     return HttpResponseRedirect("/tems/ambassador_countries/{}".format(country.pk))
+
+@login_required
+def expert_list(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    experts = models.Expert.objects.all()
+    return render(request, "tems/expert_list.html", {"user": te_user, "experts": experts})
+
+@login_required
+def expert_add(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    form = forms.ExpertForm()
+    if request.method == "POST":
+        form = forms.ExpertForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "تمت اضافة خبير جديد بنجاح")
+            return HttpResponseRedirect("/tems/experts/")
+    return render(request, "tems/expert_add.html", {"user": te_user, "form": form})
+
+@login_required
+def expert_edit(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    expert = get_object_or_404(models.Expert, pk=pk)
+    form = forms.ExpertForm(instance=expert)
+    if request.method == "POST":
+        form = forms.ExpertForm(request.POST, request.FILES, instance=expert)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "تمت تعديل الخبير بنجاح")
+            return HttpResponseRedirect("/tems/experts/")
+    return render(request, "tems/expert_add.html", {"user": te_user, "form": form, "expert": expert})
+
+@login_required
+def expert_detail(request, pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
+    expert = get_object_or_404(models.Expert, pk=pk)
+    return render(request, "tems/expert_detail.html", {"user": te_user, "expert": expert})
+
+@login_required
+def expert_delete(request,pk):
+    expert = get_object_or_404(models.Expert, pk=pk)
+    expert.avatar.delete(False)
+    expert.delete()
+    messages.success(request, "تم حذف الخبير بنجاح")
+    return HttpResponseRedirect("/tems/experts/")

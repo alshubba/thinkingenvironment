@@ -1,0 +1,47 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+الخبراء | {{expert.name}}
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+        <h1><a href="{% url 'experts_list'%}">الخبراء</a></h1>
+        <br>
+        <h1>
+      {{expert.name}}
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+            <a href="{% url 'expert_edit' expert.pk %}" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+            <br>
+            <img src="{{expert.avatar.url}}" style="width:250px"/>
+            <br>
+            <h2>حسابات التواصل الاجتماعي</h2>
+            <ul>
+                <li><h4>تويتر <i class="fa fa-twitter" aria-hidden="true"></i> : {{expert.twitter|default:"لا يوجد"}} </h4></li>
+                <li><h4>فيسبوك <i class="fa fa-facebook" aria-hidden="true"></i> : {{expert.facebook|default:"لا يوجد"}} </h4></li>
+                <li><h4>يوتيوب <i class="fa fa-youtube" aria-hidden="true"></i> : {{expert.youtube|default:"لا يوجد"}} </h4></li>
+                <li><h4>سناب تشات <i class="fa fa-snapchat" aria-hidden="true"></i> : {{expert.snapchat|default:"لا يوجد"}} </h4></li>
+                <li><h4>انستغرام <i class="fa fa-instgram" aria-hidden="true"></i> : {{expert.instgram|default:"لا يوجد"}} </h4></li>
+            </ul>
+
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}

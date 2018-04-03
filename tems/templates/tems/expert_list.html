@@ -1,0 +1,66 @@
+{% extends "tems/main.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+ قائمة الخبراء
+{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ message }}
+              </div>
+        {% endfor %}
+      <h1>
+       قائمة الخبراء
+          <span class="pull-right">
+              <a href="{% url 'expert_add' %}" class="btn btn-primary">
+                  <span class="fa fa-plus">   أضف خبير جديد </span>
+              </a>
+          </span>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+        <div class="box-body">
+           <div class="custom-scroll table-responsive">
+                  <table id="expertsTable" class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                        <th>الإسم</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for expert in experts %}
+                        <tr>
+                            <td><a href="{% url 'expert_detail' expert.pk %}">{{ expert.name }}</a></td>
+                            <td><a class="btn btn-primary" href="{% url 'expert_edit' expert.pk %}">تعديل</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'expert_delete' expert.pk %}">حذف</a></td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+{% endblock %}
+
+{% block js%}
+<script>
+   $(document).ready(function(){
+        $('#expertsTable').DataTable();
+    });
+</script>
+{% endblock %}>

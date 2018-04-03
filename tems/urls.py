@@ -13,6 +13,7 @@ router.register(r'v1/workshop_registrations', api.WorkshopRegistrationViewSet)
 router.register(r'v1/workshop_evaluations', api.WorkshopEvaluationViewSet)
 router.register(r'v1/ambassador_requests', api.AmbassadorRequestViewSet)
 router.register(r'v1/books', api.BookViewSet)
+router.register(r'v1/experts', api.ExpertViewSet)
 router.register(r'v1/ambassador_list', api.AmbassadorCountryViewSet)
 router.register(r'v1/device/apns', APNSDeviceAuthorizedViewSet)
 router.register(r'v1/device/gcm', GCMDeviceAuthorizedViewSet)
@@ -64,6 +65,11 @@ urlpatterns = [
     url(r'^ambassador_countries/(?P<country_pk>\d+)/city/(?P<city_pk>\d+)/$', views.ambassador_city_detail, name='ambassador_city_detail'),
     url(r'^ambassador_countries/(?P<country_pk>\d+)/city/(?P<city_pk>\d+)/edit/$', views.ambassador_city_edit, name='ambassador_city_edit'),
     url(r'^ambassador_countries/(?P<country_pk>\d+)/city/(?P<city_pk>\d+)/delete/$', views.ambassador_city_delete, name='ambassador_city_delete'),
+    url(r'^experts/$', views.expert_list, name="experts_list"),
+    url(r'^expert/(?P<pk>\d+)/$', views.expert_detail, name='expert_detail'),
+    url(r'^experts/add/$', views.expert_add, name="expert_add"),
+    url(r'^experts/(?P<pk>\d+)/edit/$', views.expert_edit, name="expert_edit"),
+    url(r'^experts/(?P<pk>\d+)/delete/$', views.expert_delete, name="expert_delete"),
     url(r'^api/', include(router.urls, namespace="api")),
     url(r'api/v1/get_user', api.RetrieveUserByToken.as_view()),
     url(r'api/v1/check_email', api.RetrieveUserByEmail.as_view()),

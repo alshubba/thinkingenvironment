@@ -126,3 +126,17 @@ AmbassadorExtraRepresentativeFormset = modelformset_factory(
     extra=5,
     can_delete=True
 )
+
+class ExpertForm(ModelForm):
+    class Meta:
+        model = models.Expert
+        fields = ['name', 'avatar', 'twitter', 'facebook', 'youtube', 'snapchat', 'instgram']
+        labels = {
+            'name': _('الإسم'),
+            'avatar': _('الصورة'),
+            'twitter': _('تويتر'),
+            'facebook': _('فيسبوك'),
+            'youtube': _('يوتيوب'),
+            'snapchat': _('سناب تشات'),
+            'instgram': _('انستغرام')
+        }

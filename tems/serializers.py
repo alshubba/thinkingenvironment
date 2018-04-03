@@ -115,3 +115,12 @@ class AmbassadorCountrySerializer(serializers.ModelSerializer):
     def get_flag_url(self, obj):
         if obj.flag:
             return obj.flag.url
+
+class ExpertSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.SerializerMethodField()
+    class Meta:
+        model = models.Expert
+        fields = ("id", "name", "avatar_url", "twitter", "facebook", "youtube", "snapchat", "instgram")
+
+    def get_avatar_url(self, obj):
+        return obj.avatar.url
