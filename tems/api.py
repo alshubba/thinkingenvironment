@@ -50,6 +50,9 @@ class RetrieveUserByEmail(views.APIView):
             email_body = loader.render_to_string("tems/email_forgot_password.html",{"user":user})
             send_mail("تطبيق البيئة المعززة للتفكير - إعادة إنشاء كلمة المرور", "", "Thinking Environment", [user.email], False,
                       None, None, None, email_body)
+            models.AuditLog.objects.create(title="email_sent",
+                                           event="sent a forgot-password email to user {}".format(user.username),
+                                           user=user)
             return Response({"result": "success"})
         return Response({"result": "error - user does not exist"})
 

@@ -36,6 +36,9 @@ def forgot_password(request,token):
             user.forgot_password_token = ""
             user.save()
             messages.success(request, "تمت تغيير كلمة السر بنجاح")
+            models.AuditLog.objects.create(title="password reset",
+                                           event="user {} reset their password".format(user.username),
+                                           user=user)
             return HttpResponseRedirect("/tems/forgot_password_success")
     return render(request, "tems/forgot_password.html")
 
@@ -51,6 +54,9 @@ def login_view(request):
             teUser = models.ThinkingEnvUser.objects.get(username=user.username)
             if (teUser.role == "admin") or (teUser.role == "expert"):
                 login(request, user)
+                models.AuditLog.objects.create(title="login",
+                                               event="user {} logged in".format(user.username),
+                                               user=teUser)
                 return HttpResponseRedirect("/tems/dashboard")
             else:
                 messages.error(request, "عذرا  ولكن  هذه  الصفحة  مخصصة  فقط  للمدراء  والخبراء")
@@ -61,7 +67,11 @@ def login_view(request):
     return render(request, 'tems/login.html')
 
 def logout_view(request):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     logout(request)
+    models.AuditLog.objects.create(title="logout",
+                                   event="user {} logged out".format(te_user.username),
+                                   user=te_user)
     return HttpResponseRedirect("/tems/login")
 
 @login_required
@@ -140,6 +150,10 @@ def user_add(request):
                 new_user.created_manually = True
                 new_user.save()
                 messages.success(request, "تم اضافة مستخدم جديد بنجاح")
+                models.AuditLog.objects.create(title="new_user",
+                                               event="manager {} added a new user{}".format(
+                                                   te_user.username, new_user.username),
+                                               user=te_user)
                 return HttpResponseRedirect("/tems/users/")
         return render(request, 'tems/user_add.html', {"user": te_user, "form": form})
     else:
@@ -179,6 +193,10 @@ def ticket_edit(request, pk):
                 if status1 == "open" and status2 == "closed":
                     notification_title = 'تم الرد على استشارتكم : "{}"'.format(ticket.title)
                     apns_device = APNSDevice.objects.filter(user=ticket.user)
+                    models.AuditLog.objects.create(title="ticket_edit",
+                                                   event="manager {} replied to ticket {} by user{}".format(
+                                                       te_user.username, ticket, ticket.user),
+                                                   user=te_user)
                     if apns_device:
                         apns_device.send_message(notification_title)
                     gcm_device = GCMDevice.objects.filter(user=ticket.user)
@@ -288,16 +306,25 @@ def infographic_add(request):
             for image in request.FILES.getlist('image'):
                 models.Infographic.objects.create(image = image)
             messages.success(request, "تمت اضافة انفوجرافيك جديد بنجاح")
+            models.AuditLog.objects.create(title="add_infographic",
+                                           event="manager {} added a new infographic".format(
+                                               te_user.username),
+                                           user=te_user)
         return HttpResponseRedirect("/tems/infographics/")
     return render(request, "tems/infographic_add.html", {"user": te_user, "form": form})
 
 @login_required
 def infographic_delete(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     infographic = get_object_or_404(models.Infographic, pk=pk)
     infographic.image.delete_thumbnails()
     infographic.image.delete(False)
     infographic.delete()
     messages.success(request, "تم حذف الانفوجرافيك بنجاح")
+    models.AuditLog.objects.create(title="delete_infographic",
+                                   event="manager {} deleted an infographic".format(
+                                       te_user.username),
+                                   user=te_user)
     return HttpResponseRedirect("/tems/infographics/")
 
 @login_required
@@ -347,8 +374,12 @@ def book_add(request):
     if request.method == "POST":
         form = forms.BookForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            booklet = form.save()
             messages.success(request, "تمت اضافة كتيب جديد بنجاح")
+            models.AuditLog.objects.create(title="booklet_add",
+                                           event="manager {} added a new booklet".format(
+                                               te_user.username, booklet.title),
+                                           user=te_user)
             return HttpResponseRedirect("/tems/books/")
     return render(request, "tems/book_add.html", {"user": te_user, "form": form})
 
@@ -359,16 +390,26 @@ def book_edit(request,pk):
     if request.method == "POST":
         form = forms.BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
-            form.save()
+            booklet = form.save()
             messages.success(request, "تمت تعديل الكتيب بنجاح")
+            models.AuditLog.objects.create(title="booklet_edit",
+                                           event="manager {} edited a booklet".format(
+                                               te_user.username, booklet.title),
+                                           user=te_user)
             return HttpResponseRedirect("/tems/books/")
     return render(request, "tems/book_add.html", {"user": te_user, "form": form, "book": book})
 
 def book_delete(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     book = get_object_or_404(models.Book, pk=pk)
     book.file.delete(False)
+    models.AuditLog.objects.create(title="booklet_delete",
+                                   event="manager {} deleted a booklet".format(
+                                       te_user.username, book.title),
+                                   user=te_user)
     book.delete()
     messages.success(request, "تم حذف الكتيب بنجاح")
+
     return HttpResponseRedirect("/tems/books/")
 
 
@@ -393,6 +434,10 @@ def ambassador_country_add(request):
                 city.ambassador_country = country
                 city.save()
             messages.success(request, "تمت اضافة دولة جديدة بنجاح")
+            models.AuditLog.objects.create(title="country_added",
+                                           event="manager {} added a new country {}".format(
+                                               te_user.username, country.name),
+                                           user=te_user)
             return HttpResponseRedirect("/tems/ambassador_countries/")
     return render(request, "tems/ambassador_country_add.html", {"user": te_user, "form": form, "formset": formset})
 
@@ -419,10 +464,16 @@ def ambassador_country_edit(request,pk):
 
 @login_required
 def ambassador_country_delete(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     country = get_object_or_404(models.AmbassadorCountry, pk=pk)
     country.flag.delete(False)
+    models.AuditLog.objects.create(title="country_deleted",
+                                   event="manager {} deleted a country {}".format(
+                                       te_user.username, country),
+                                   user=te_user)
     country.delete()
     messages.success(request, "تم حذف الدولة بنجاح")
+
     return HttpResponseRedirect("/tems/ambassador_countries/")
 
 @login_required
@@ -482,8 +533,12 @@ def expert_add(request):
     if request.method == "POST":
         form = forms.ExpertForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            expert = form.save()
             messages.success(request, "تمت اضافة خبير جديد بنجاح")
+            models.AuditLog.objects.create(title="expert_added",
+                                           event="manager {} added a new expert {}".format(
+                                               te_user.username, expert),
+                                           user=te_user)
             return HttpResponseRedirect("/tems/experts/")
     return render(request, "tems/expert_add.html", {"user": te_user, "form": form})
 
@@ -497,6 +552,10 @@ def expert_edit(request,pk):
         if form.is_valid():
             form.save()
             messages.success(request, "تمت تعديل الخبير بنجاح")
+            models.AuditLog.objects.create(title="expert_edited",
+                                           event="manager {} edited an expert {}".format(
+                                               te_user.username, expert),
+                                           user=te_user)
             return HttpResponseRedirect("/tems/experts/")
     return render(request, "tems/expert_add.html", {"user": te_user, "form": form, "expert": expert})
 
@@ -508,8 +567,13 @@ def expert_detail(request, pk):
 
 @login_required
 def expert_delete(request,pk):
+    te_user = models.ThinkingEnvUser.objects.get(username=request.user)
     expert = get_object_or_404(models.Expert, pk=pk)
     expert.avatar.delete(False)
+    models.AuditLog.objects.create(title="expert_deleted",
+                                   event="manager {} deleted an expert {}".format(
+                                       te_user.username, expert),
+                                   user=te_user)
     expert.delete()
     messages.success(request, "تم حذف الخبير بنجاح")
     return HttpResponseRedirect("/tems/experts/")
