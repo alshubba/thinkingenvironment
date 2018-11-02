@@ -12,6 +12,9 @@ from . import forms, models
 def main_view(request):
     return render(request, "tems/main_view.html")
 
+def privacy_policy(request):
+    return render(request, "tems/privacy_policy.html")
+
 def contact_us(request):
     if request.method == "POST":
         name = request.POST['name']
