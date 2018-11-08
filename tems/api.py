@@ -56,6 +56,7 @@ class RetrieveUserByEmail(views.APIView):
             return Response({"result": "success"})
         return Response({"result": "error - user does not exist"})
 
+
 class IncreaseUserDownloadCount(views.APIView):
     def post(self, request, format=None):
         user = models.ThinkingEnvUser.objects.get(username=request.user)
@@ -64,28 +65,38 @@ class IncreaseUserDownloadCount(views.APIView):
         user.save()
         return Response({"result": "success"})
 
+
 class SendBookLinkEmail(views.APIView):
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return (AllowAny() if self.request.method == 'POST'
+                else IsAuthenticated()),
+
     def post(self, request, format=None):
-        user = models.ThinkingEnvUser.objects.get(username=request.user)
+        email = request.data.get('email', None)
         id = request.data.get('id', None)
         if id == None:
             return Response({"result": "error - id not provided"})
         book = get_object_or_404(models.Book, id=id)
         if book != None:
             email_title = "تطبيق البيئة المعززة للتفكير - {}".format(book.title)
-            email_body = loader.render_to_string("tems/email_send_book_link.html", {"user":user,"book":book})
-            send_mail(email_title, "", "Thinking Environment", [user.email], False,
+            email_body = loader.render_to_string("tems/email_send_book_link.html", {"book":book})
+            send_mail(email_title, "", "Thinking Environment", [email], False,
                       None, None, None, email_body)
+            """
             models.AuditLog.objects.create(title="email_sent",
-                                           event="sent an email with a link to book {} to user {}".format(book.title, user.username),
-                                           user=user)
+                                           event="sent an email with a link to book {} to email {}".format(book.title, email),
+                                           user=request.user)
+            
             if book.main_guide:
                 count = user.main_booklet_email_count
                 user.main_booklet_email_count = count + 1
                 user.date_main_booklet_email_sent = datetime.now()
                 user.save()
+            """
             return Response({"result": "success"})
         return Response({"result": "error - book does not exist"})
+
 
 class TrainingBooklet(views.APIView):
     def get(self, request, format=None):
@@ -96,6 +107,7 @@ class TrainingBooklet(views.APIView):
             book = models.Book.objects.get(training_guide=True)
             serializer = serializers.BookSerializer(book)
             return Response(serializer.data)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = models.ThinkingEnvUser.objects.all()

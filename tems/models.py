@@ -36,7 +36,7 @@ class Ticket(models.Model):
     replier = models.IntegerField(null=True, blank=True) # id of the person who replied
     open_to_public = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(ThinkingEnvUser)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.title
@@ -60,7 +60,7 @@ class WorkshopRequest(models.Model):
     about_us = models.CharField(max_length=255, choices=ABOUT_US_METHODS)
     about_us_other_reason = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(ThinkingEnvUser)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.requesting_authority_name
@@ -90,8 +90,8 @@ class WorkshopRegistration(models.Model):
     workshop_evaluated = models.BooleanField(default=False)
     presenter_evaluated = models.BooleanField(default=False)
     organization_evaluated = models.BooleanField(default=False)
-    user = models.ForeignKey(ThinkingEnvUser)
-    workshop = models.ForeignKey(Workshop)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.PROTECT)
+    workshop = models.ForeignKey(Workshop, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -121,9 +121,9 @@ class WorkshopEvaluation(models.Model):
     organization_organized = models.IntegerField(default=0)
     organization_cooperative = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(ThinkingEnvUser)
-    workshop_registration = models.ForeignKey(WorkshopRegistration)
-    workshop = models.ForeignKey(Workshop)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.PROTECT)
+    workshop_registration = models.ForeignKey(WorkshopRegistration, on_delete=models.PROTECT)
+    workshop = models.ForeignKey(Workshop, on_delete=models.PROTECT)
 
     def __str__(self):
         return "{} | {} | {}".format(self.user, self.workshop_registration.workshop.title, self.evaluation_type)
@@ -139,7 +139,7 @@ class AmbassadorRequest(models.Model):
     what_can_you_provide = models.TextField()
     status = models.CharField(max_length=255, choices=REQUEST_STATUS, default="open")
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(ThinkingEnvUser)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -171,7 +171,7 @@ class AmbassadorCity(models.Model):
     name = models.CharField(max_length=255)
     city_representative = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    ambassador_country = models.ForeignKey(AmbassadorCountry)
+    ambassador_country = models.ForeignKey(AmbassadorCountry, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -179,7 +179,7 @@ class AmbassadorCity(models.Model):
 class AmbassadorExtraRepresentative(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-    ambassador_city = models.ForeignKey(AmbassadorCity)
+    ambassador_city = models.ForeignKey(AmbassadorCity, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -187,7 +187,7 @@ class AmbassadorExtraRepresentative(models.Model):
 class AuditLog(models.Model):
     title = models.CharField(max_length=255)
     event = models.CharField(max_length=255)
-    user = models.ForeignKey(ThinkingEnvUser)
+    user = models.ForeignKey(ThinkingEnvUser, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.title

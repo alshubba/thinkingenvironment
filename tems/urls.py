@@ -71,7 +71,7 @@ urlpatterns = [
     url(r'^experts/(?P<pk>\d+)/edit/$', views.expert_edit, name="expert_edit"),
     url(r'^experts/(?P<pk>\d+)/delete/$', views.expert_delete, name="expert_delete"),
     url(r'^privacy-policy/$', views.privacy_policy, name="privacy_policy"),
-    url(r'^api/', include(router.urls, namespace="api")),
+    url(r'^api/', include(router.urls)),
     url(r'api/v1/get_user', api.RetrieveUserByToken.as_view()),
     url(r'api/v1/check_email', api.RetrieveUserByEmail.as_view()),
     url(r'api/v1/increase_download_count', api.IncreaseUserDownloadCount.as_view()),
